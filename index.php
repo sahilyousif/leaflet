@@ -1,3 +1,10 @@
+<?php
+session_start();
+if(!isset($_SESSION['username'])) {
+    header("Location: login.php");
+    exit;
+}
+?>
 <html>
 
 <head>
@@ -54,16 +61,11 @@
       <div class="sidebar-header" id="sidebar-header"></div>
 
       
-      <div class="property-type">
-        3 beds -  2 bath -  2305 sqft
-      </div>
-      <?php   
-        echo "php";
-      ?>
+      <div class="property-type" id="property-type"></div>
       <div class="container" id="price">
         <div class="col-1">
-          <div class="item-header">Zillow Price</div>
-          <div id="zillow-price">$1,285,000</div>
+          <div class="item-header">Zestimate</div>
+          <div id="zillow-price"></div>
         </div>
 
         <div class="col-1">
@@ -210,27 +212,31 @@
 
         <div class="col-1">
           <div class="item-header">FACTS</div>
+          <p id = "homeFacts">
           Lot: 0.39 acres<br>
           Single Family<br>
           Built in 1898<br>
           8 shoppers saved this home<br>
           Last sold: Mar 2012<br>
           Price/sqft: 124<br>
-          MLS #: 20153309
+          MLS #: 
+          </p>
         </div>
         <div class="col-1">
           <div class="item-header">FEATURES</div>
+          <p id = "homeFeatures">
           Flooring: Hardwood<br>
           Parking: 2 spaces<br>
           Dishwasher<br>
           Garbage Disposal<br>
           Cooling: Window Units<br>
+          </p>
         </div>
 
         
         <div class="col-2">
           <div class="item-header">DESCRIPTION</div>
-          1898 Victorian elegance & distinction with modern 
+          <p id="homeDescription">1898 Victorian elegance & distinction with modern 
           day kitchen, bathrooms, fixtures, plumbing and 
           electrical this has the ambience of the old with 
           the new. Soaring coffered ceilings, wainscoting, 
@@ -241,7 +247,7 @@
           up for impromptu meals at island seating or could 
           entertain with buffet service. No historic homeowners 
           association but neighborhood has formed a Watch 
-          Group.
+          Group.</p>
         </div>
       </div>
 
@@ -258,7 +264,7 @@ var address;
 
 var geocoder = new google.maps.Geocoder;
 
-var map = L.map('map', {zoomControl: false, loadingControl: true}).setView([29.203171878671903,-94.94085967540741], 18);
+var map = L.map('map', {zoomControl: false, loadingControl: true}).setView([29.266961445446256,-94.83965992927551], 18);
 
 
 var ImageryLayer = L.esri.basemapLayer('Imagery')
@@ -266,6 +272,8 @@ var StreetsLayer = L.esri.basemapLayer('Streets')
 // ImageryLayer.addTo(map);
 ImageryLayer.addTo(map);
 var FloodRisk, StormRisk, TRIRisk, totalRisk;
+var addSearch, cityStateZip;
+var bedRooms, bathRooms, finishedSqFt, Zestimate, zillowId, homeDescription;
 
 var sidebar = L.control.sidebar('sidebar', {
   position: 'right'
@@ -532,7 +540,49 @@ map.addLayer(drawnItems);
                   
                   var header = document.getElementById("sidebar-header");
                   header.innerHTML = results[0].address_components[0].long_name + " " + results[0].address_components[1].long_name + "<div class='sidebar-subheader'>" + results[0].address_components[2].long_name + ", " + results[0].address_components[4].short_name + " " + results[0].address_components[6].long_name+ "</div>";
-
+                  addSearch = results[0].address_components[0].long_name + " " + results[0].address_components[1].long_name;
+                  console.log(addSearch);
+                  cityStateZip = results[0].address_components[2].long_name + "," + results[0].address_components[4].short_name + " " + results[0].address_components[6].long_name;
+                  console.log(cityStateZip);
+                  $.ajax({
+                    url: 'zillow.php',
+                    type: 'get',
+                    dataType: 'json',
+                    data: {
+                      'address': addSearch,
+                      'citystate': cityStateZip
+                    },
+                    success: function(response){
+                      console.log(response);
+                      bedRooms = response[0].response.results.result.bedrooms;
+                      bathRooms = response[0].response.results.result.bathrooms;
+                      finishedSqFt = response[0].response.results.result.finishedSqFt;
+                      Zestimate = response[0].response.results.result.zestimate.amount;
+                      homeDescription = "unknown"
+                      editedFacts = "unknown"
+                      if(response[1].hasOwnProperty('response'))
+                      {
+                        if(response[1].response.hasOwnProperty('homeDescription'))
+                          homeDescription = response[1].response.homeDescription;
+                        if(response[1].response.hasOwnProperty('editedFacts'))
+                          homeFacts = response[1].response.editedFacts;
+                      }
+                      if(bedRooms) {
+                          document.getElementById("property-type").innerHTML = bedRooms + " beds - " + bathRooms + " baths - " + finishedSqFt + " sqft";
+                        }
+                        else {
+                          document.getElementById("property-type").innerHTML = bathRooms + " baths - " + finishedSqFt + " sqft";
+                        }
+                        document.getElementById("zillow-price").innerHTML = "$" + Zestimate;
+                        document.getElementById("homeDescription").innerHTML = homeDescription;
+                      },
+                    error: function (xhr,status,error){
+                      document.getElementById("zillow-price").innerHTML = "unknown"
+                      document.getElementById("homeDescription").innerHTML = "unknown";
+                      document.getElementById("property-type").innerHTML = "_ beds - " + "_ baths - " + "_ sqft";
+                    }
+                  });
+                  
                 } else {
                   window.alert('No results found');
                 }
@@ -543,6 +593,7 @@ map.addLayer(drawnItems);
 
         }
         function changeScore() {
+          
           $('#flood').data("score",FloodRisk);
           if( FloodRisk == 1) {
             $('#flood').find(".inset").css("background-color","#27AE61");
