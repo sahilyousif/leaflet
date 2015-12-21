@@ -50,6 +50,7 @@ if(!isset($_SESSION['username'])) {
 </head>
 
 <body>
+  <marquee behaviour="scroll" direction="left">This is a test site for Buyers Beware. All content is strictly confidential.</marquee>
 
   <div id="map"></div>
 
