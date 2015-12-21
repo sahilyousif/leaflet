@@ -134,7 +134,7 @@ input[type=search]:focus {
 #totalRiskGraph {
   font-weight: normal;
   /*font-size: 32px;*/
-  padding-top: 10px;
+  padding-top: 20px;
   padding-bottom: 15px;
 }
 .risk {
@@ -226,12 +226,17 @@ meter::-webkit-meter-bar {
 
 meter::-webkit-meter-optimum-value {
 
-    background: -webkit-gradient(linear, left top, right bottom, color-stop(0%, #00ff00), color-stop(100%, #ffa000));
+    background: -webkit-gradient(linear, left top, right bottom, color-stop(0%, #86cc00), color-stop(100%, #ff4500));
 
 }
 meter::-webkit-meter-suboptimum-value {
 
-    background: -webkit-gradient(linear, left top, right bottom, color-stop(0%, #00ff00), color-stop(100%, #ff0000));
+    background: -webkit-gradient(linear, left top, right bottom, color-stop(0%, #86cc00), color-stop(100%, orange));
+
+}
+meter::-webkit-meter-even-less-good-value {
+
+    background: -webkit-gradient(linear, left top, right bottom, color-stop(0%, #86cc00), color-stop(100%, red));
 
 }
 ::-webkit-scrollbar {

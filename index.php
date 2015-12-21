@@ -1,8 +1,8 @@
 <?php
 session_start();
 if(!isset($_SESSION['username'])) {
-    header("Location: login.php");
-    exit;
+  header("Location: login.php");
+  exit;
 }
 ?>
 <html>
@@ -41,6 +41,8 @@ if(!isset($_SESSION['username'])) {
   <script src="dist/jQuery.print.js"></script>
   <script src="dist/leaflet.easyPrint.js"></script>
 
+  <script src="//cdn.jsdelivr.net/leaflet.esri.renderers/2.0.0/esri-leaflet-renderers.js"></script>
+
   <style>
 
   </style>
@@ -77,198 +79,292 @@ if(!isset($_SESSION['username'])) {
 
       <div class="container">
         <div class="col-2">
-          <div class="item-header">RISK SCORE</div>
+          <div class="item-header">OVERALL RISK SCORE&nbsp; <a href="overall_risk.html"><img src="images/external_link.png" width="15px" /></a></div>
           <div class="totalRisk">
 
-            <div id="totalRiskValue">Average</div>
+            <!-- <div id="totalRiskValue">Average</div> -->
             <div id="totalRiskGraph">
-              <meter max= 1.0 min= 0.0 value=0.50 high=.70 low=.30 optimum=0.5></meter>
+              <meter max= 5.0 min= 0.0 value=0.0 high=3.0 low=1.0 optimum=4.0 id="OverallRisk"></meter>
               <div style="float:left">Low</div>
               <div style="float:right">High</div>
             </div>
           </div>
         </div>
         <div class="col-2">
-          <div class="item-header">INDIVIDUAL RISKS</div>
-          <div class="risk">
-            <div class="col-1">
-              <div class="radial" data-score="0" id="flood">
-                <div class="circle">
-                  <div class="mask full">
-                    <div class="fill"></div>
-                  </div>
-                  <div class="mask half">
-                    <div class="fill"></div>
-                    <div class="fill fix"></div>
-                  </div>
-                </div>
-                <div class="inset">
-                  <span class='bigger'>3</span> 
-                  <span class='little'>/ 5</span>
-                </div>
-                <div class="tag">
-                  Flood
-                </div>  
-              </div>
-              <div class="radial" data-score="0" id="storm">
-                <div class="circle">
-                  <div class="mask full">
-                    <div class="fill"></div>
-                  </div>
-                  <div class="mask half">
-                    <div class="fill"></div>
-                    <div class="fill fix"></div>
-                  </div>
-                </div>
-                <div class="inset">
-                  <span class='bigger'>1</span> 
-                  <span class='little'>/ 5</span>
-                </div>
-                <div class="tag">
-                  Storm
-                </div>  
-              </div>
-              <div class="radial" data-score="0" id="tri">
-                <div class="circle">
-                  <div class="mask full">
-                    <div class="fill"></div>
-                  </div>
-                  <div class="mask half">
-                    <div class="fill"></div>
-                    <div class="fill fix"></div>
-                  </div>
-                </div>
-                <div class="inset">
-                  <span class='bigger'>2</span> 
-                  <span class='little'>/ 5</span>
-                </div>
-                <div class="tag">
-                  TRI
-                </div>  
-              </div>
-            </div>
+         
 
-            <div class="col-1">
-              <div class="radial" data-score="0" id="hurricane">
-                <div class="circle">
-                  <div class="mask full">
-                    <div class="fill"></div>
+            <!-- _______________________DETAILED RISKS ________________________ -->
+            <div class="item-header">DETAILED RISKS&nbsp; <a href="detailed_risk.html"><img src="images/external_link.png" width="15px" /></a></div>
+            <div class="risk">
+              <div class="col-1">
+                <div class="radial" data-score="0" id="Hurricanes">
+                  <div class="circle">
+                    <div class="mask full">
+                      <div class="fill"></div>
+                    </div>
+                    <div class="mask half">
+                      <div class="fill"></div>
+                      <div class="fill fix"></div>
+                    </div>
                   </div>
-                  <div class="mask half">
-                    <div class="fill"></div>
-                    <div class="fill fix"></div>
+                  <div class="inset">
+                    <span class='bigger'>3</span> 
+                    <span class='little'>/ 5</span>
                   </div>
+                  <div class="tag">
+                    Hurricanes
+                  </div>  
                 </div>
-                <div class="inset">
-                  <span class='bigger'>3</span> 
-                  <span class='little'>/ 5</span>
+                <div class="radial" data-score="0" id="Floods">
+                  <div class="circle">
+                    <div class="mask full">
+                      <div class="fill"></div>
+                    </div>
+                    <div class="mask half">
+                      <div class="fill"></div>
+                      <div class="fill fix"></div>
+                    </div>
+                  </div>
+                  <div class="inset">
+                    <span class='bigger'>1</span> 
+                    <span class='little'>/ 5</span>
+                  </div>
+                  <div class="tag">
+                    Floods
+                  </div>  
                 </div>
-                <div class="tag">
-                  Hurricane
-                </div>  
+                <div class="radial" data-score="0" id="Wildfire">
+                  <div class="circle">
+                    <div class="mask full">
+                      <div class="fill"></div>
+                    </div>
+                    <div class="mask half">
+                      <div class="fill"></div>
+                      <div class="fill fix"></div>
+                    </div>
+                  </div>
+                  <div class="inset">
+                    <span class='bigger'>2</span> 
+                    <span class='little'>/ 5</span>
+                  </div>
+                  <div class="tag">
+                    Wildfire
+                  </div>  
+                </div>
+                <div class="radial" data-score="0" id="Traffic">
+                  <div class="circle">
+                    <div class="mask full">
+                      <div class="fill"></div>
+                    </div>
+                    <div class="mask half">
+                      <div class="fill"></div>
+                      <div class="fill fix"></div>
+                    </div>
+                  </div>
+                  <div class="inset">
+                    <span class='bigger'>3</span> 
+                    <span class='little'>/ 5</span>
+                  </div>
+                  <div class="tag">
+                    Traffic
+                  </div>  
+                </div>
+                <div class="radial" data-score="0" id="NPLSites">
+                  <div class="circle">
+                    <div class="mask full">
+                      <div class="fill"></div>
+                    </div>
+                    <div class="mask half">
+                      <div class="fill"></div>
+                      <div class="fill fix"></div>
+                    </div>
+                  </div>
+                  <div class="inset">
+                    <span class='bigger'>1</span> 
+                    <span class='little'>/ 5</span>
+                  </div>
+                  <div class="tag">
+                    NPS Sites
+                  </div>  
+                </div>
+                <div class="radial" data-score="0" id="RMPSites">
+                  <div class="circle">
+                    <div class="mask full">
+                      <div class="fill"></div>
+                    </div>
+                    <div class="mask half">
+                      <div class="fill"></div>
+                      <div class="fill fix"></div>
+                    </div>
+                  </div>
+                  <div class="inset">
+                    <span class='bigger'>2</span> 
+                    <span class='little'>/ 5</span>
+                  </div>
+                  <div class="tag">
+                    RMP Sites
+                  </div>  
+                </div>
               </div>
-              <div class="radial" data-score="0" id="earthquake">
-                <div class="circle">
-                  <div class="mask full">
-                    <div class="fill"></div>
+
+              <div class="col-1">
+                <div class="radial" data-score="0" id="TSDFSites">
+                  <div class="circle">
+                    <div class="mask full">
+                      <div class="fill"></div>
+                    </div>
+                    <div class="mask half">
+                      <div class="fill"></div>
+                      <div class="fill fix"></div>
+                    </div>
                   </div>
-                  <div class="mask half">
-                    <div class="fill"></div>
-                    <div class="fill fix"></div>
+                  <div class="inset">
+                    <span class='bigger'>3</span> 
+                    <span class='little'>/ 5</span>
                   </div>
+                  <div class="tag">
+                    TSDF Sites
+                  </div>  
                 </div>
-                <div class="inset">
-                  <span class='bigger'>1</span> 
-                  <span class='little'>/ 5</span>
+                <div class="radial" data-score="0" id="Ozone">
+                  <div class="circle">
+                    <div class="mask full">
+                      <div class="fill"></div>
+                    </div>
+                    <div class="mask half">
+                      <div class="fill"></div>
+                      <div class="fill fix"></div>
+                    </div>
+                  </div>
+                  <div class="inset">
+                    <span class='bigger'>1</span> 
+                    <span class='little'>/ 5</span>
+                  </div>
+                  <div class="tag">
+                    Ozone
+                  </div>  
                 </div>
-                <div class="tag">
-                  Earthquake
-                </div>  
+                <div class="radial" data-score="0" id="ParticulateMatter">
+                  <div class="circle">
+                    <div class="mask full">
+                      <div class="fill"></div>
+                    </div>
+                    <div class="mask half">
+                      <div class="fill"></div>
+                      <div class="fill fix"></div>
+                    </div>
+                  </div>
+                  <div class="inset">
+                    <span class='bigger'>2</span> 
+                    <span class='little'>/ 5</span>
+                  </div>
+                  <div class="tag">
+                    Particulate Matter
+                  </div>  
+                </div>
+                <div class="radial" data-score="0" id="Earthquake">
+                  <div class="circle">
+                    <div class="mask full">
+                      <div class="fill"></div>
+                    </div>
+                    <div class="mask half">
+                      <div class="fill"></div>
+                      <div class="fill fix"></div>
+                    </div>
+                  </div>
+                  <div class="inset">
+                    <span class='bigger'>3</span> 
+                    <span class='little'>/ 5</span>
+                  </div>
+                  <div class="tag">
+                    Earthquake
+                  </div>  
+                </div>
+                <div class="radial" data-score="0" id="Subsidence">
+                  <div class="circle">
+                    <div class="mask full">
+                      <div class="fill"></div>
+                    </div>
+                    <div class="mask half">
+                      <div class="fill"></div>
+                      <div class="fill fix"></div>
+                    </div>
+                  </div>
+                  <div class="inset">
+                    <span class='bigger'>1</span> 
+                    <span class='little'>/ 5</span>
+                  </div>
+                  <div class="tag">
+                    Subsidence
+                  </div>  
+                </div>
               </div>
-              <div class="radial" data-score="0" id="wildfire">
-                <div class="circle">
-                  <div class="mask full">
-                    <div class="fill"></div>
-                  </div>
-                  <div class="mask half">
-                    <div class="fill"></div>
-                    <div class="fill fix"></div>
-                  </div>
-                </div>
-                <div class="inset">
-                  <span class='bigger'>2</span> 
-                  <span class='little'>/ 5</span>
-                </div>
-                <div class="tag">
-                  Wildfire
-                </div>  
-              </div>
+
             </div>
           </div>
         </div>
+
+        <div class="container">
+
+          <div class="col-1">
+            <div class="item-header">FACTS</div>
+            <p id = "homeFacts">
+              Lot: 0.39 acres<br>
+              Single Family<br>
+              Built in 1898<br>
+              8 shoppers saved this home<br>
+              Last sold: Mar 2012<br>
+              Price/sqft: 124<br>
+              MLS #: 
+            </p>
+          </div>
+          <div class="col-1">
+            <div class="item-header">FEATURES</div>
+            <p id = "homeFeatures">
+              Flooring: Hardwood<br>
+              Parking: 2 spaces<br>
+              Dishwasher<br>
+              Garbage Disposal<br>
+              Cooling: Window Units<br>
+            </p>
+          </div>
+
+
+          <div class="col-2">
+            <div class="item-header">DESCRIPTION</div>
+            <p id="homeDescription">1898 Victorian elegance & distinction with modern 
+              day kitchen, bathrooms, fixtures, plumbing and 
+              electrical this has the ambience of the old with 
+              the new. Soaring coffered ceilings, wainscoting, 
+              crown molding, transoms, & more. It is flooded 
+              with sunshine through the tall windows throughout 
+              & lots of nook & crannies for storage. Pamper 
+              yourself in either luxury bathrooms. Kitchen is set 
+              up for impromptu meals at island seating or could 
+              entertain with buffet service. No historic homeowners 
+              association but neighborhood has formed a Watch 
+              Group.</p>
+            </div>
+          </div>
+
+
+        </div>
+
+
       </div>
-
-      <div class="container">
-
-        <div class="col-1">
-          <div class="item-header">FACTS</div>
-          <p id = "homeFacts">
-          Lot: 0.39 acres<br>
-          Single Family<br>
-          Built in 1898<br>
-          8 shoppers saved this home<br>
-          Last sold: Mar 2012<br>
-          Price/sqft: 124<br>
-          MLS #: 
-          </p>
-        </div>
-        <div class="col-1">
-          <div class="item-header">FEATURES</div>
-          <p id = "homeFeatures">
-          Flooring: Hardwood<br>
-          Parking: 2 spaces<br>
-          Dishwasher<br>
-          Garbage Disposal<br>
-          Cooling: Window Units<br>
-          </p>
-        </div>
-
-        
-        <div class="col-2">
-          <div class="item-header">DESCRIPTION</div>
-          <p id="homeDescription">1898 Victorian elegance & distinction with modern 
-          day kitchen, bathrooms, fixtures, plumbing and 
-          electrical this has the ambience of the old with 
-          the new. Soaring coffered ceilings, wainscoting, 
-          crown molding, transoms, & more. It is flooded 
-          with sunshine through the tall windows throughout 
-          & lots of nook & crannies for storage. Pamper 
-          yourself in either luxury bathrooms. Kitchen is set 
-          up for impromptu meals at island seating or could 
-          entertain with buffet service. No historic homeowners 
-          association but neighborhood has formed a Watch 
-          Group.</p>
-        </div>
-      </div>
-
 
     </div>
 
+    <script>
+    var address;
 
-  </div>
+    var geocoder = new google.maps.Geocoder;
 
-</div>
-
-<script>
-var address;
-
-var geocoder = new google.maps.Geocoder;
-
-var map = L.map('map', {zoomControl: false, loadingControl: true}).setView([29.266961445446256,-94.83965992927551], 18);
+    var map = L.map('map', {zoomControl: false, loadingControl: true}).setView([29.266961445446256,-94.83965992927551], 18);
 
 
-var ImageryLayer = L.esri.basemapLayer('Imagery')
-var StreetsLayer = L.esri.basemapLayer('Streets')
+    var ImageryLayer = L.esri.basemapLayer('Imagery')
+    var StreetsLayer = L.esri.basemapLayer('Streets')
 // ImageryLayer.addTo(map);
 ImageryLayer.addTo(map);
 var FloodRisk, StormRisk, TRIRisk, totalRisk;
@@ -288,28 +384,14 @@ map.on('load',function(e){
   console.log("loading")
 });
 
-// map.on('zoomend', function() {
-//   if(map.getZoom() > 16 && map.hasLayer(StreetsLayer))
-//   {
-//    map.removeLayer(StreetsLayer)
-//    map.addLayer(ImageryLayer)
-//  } 
 
-//  if(map.getZoom() < 17 && map.hasLayer(ImageryLayer))
-//  {
-//    map.removeLayer(ImageryLayer)
-//    map.addLayer(StreetsLayer)
-//  }
-
-
-// });
 
         //   map.on('click', function(e) {
         //     alert("Lat, Lon : " + e.latlng.lat + ", " + e.latlng.lng)
         // });
 var parcelLayer = L.esri.featureLayer({
             // url: 'https://newcoastalatlas.tamug.edu/coastal/rest/services/Tricountyatlas/Risk/MapServer/7',
-            url: 'http://newcoastalatlas.tamug.edu/coastal/rest/services/grover/Parcels_wRisk/MapServer/0',
+            url: 'http://newcoastalatlas.tamug.edu/coastal/rest/services/grover/Parcelswithrisk04/FeatureServer/0',
             minZoom: 17,
             style: function(feature) {
 
@@ -321,75 +403,75 @@ var parcelLayer = L.esri.featureLayer({
             }
           }).addTo(map);
 
-var floodRisk = L.esri.featureLayer({
-            // url: 'https://newcoastalatlas.tamug.edu/coastal/rest/services/Tricountyatlas/Risk/MapServer/7',
-            url: 'https://newcoastalatlas.tamug.edu/coastal/rest/services/Tricountyatlas/Risk/MapServer/0',
-            // minZoom: 17,
-            style: function(feature) {
-              // console.log(feature)
-              if(feature.properties.ZONE === "A" || feature.properties.ZONE === "Zone AE"){
-                return {
-                  // color: '#2E709F',
-                  simplifyFactor: 0.85,
-                  color: '#5C97B7',
-                  weight: 0,
-                  // opacity: 1,
-                  fillOpacity: 0.7
-                }
-              } else if(feature.properties.ZONE === "X" || feature.properties.ZONE === "Zone X (in)" || feature.properties.ZONE === "Zone X (out)"){
-                return {
-                  // color: '#2E709F',
-                  color: '#AED4FB',
-                  weight: 0,
-                  // opacity: 1,
-                  fillOpacity: 0.7
-                }
-              } else {
-                return {
-                  // color: '#2E709F',
-                  color: '#BFFFFF',
-                  weight: 0,
-                  // opacity: 1,
-                  fillOpacity: 0.7
-                }
-              }
+// var floodRisk = L.esri.featureLayer({
+//             // url: 'https://newcoastalatlas.tamug.edu/coastal/rest/services/Tricountyatlas/Risk/MapServer/7',
+//             url: 'https://newcoastalatlas.tamug.edu/coastal/rest/services/Tricountyatlas/Risk/MapServer/0',
+//             // minZoom: 17,
+//             style: function(feature) {
+//               // console.log(feature)
+//               if(feature.properties.ZONE === "A" || feature.properties.ZONE === "Zone AE"){
+//                 return {
+//                   // color: '#2E709F',
+//                   simplifyFactor: 0.85,
+//                   color: '#5C97B7',
+//                   weight: 0,
+//                   // opacity: 1,
+//                   fillOpacity: 0.7
+//                 }
+//               } else if(feature.properties.ZONE === "X" || feature.properties.ZONE === "Zone X (in)" || feature.properties.ZONE === "Zone X (out)"){
+//                 return {
+//                   // color: '#2E709F',
+//                   color: '#AED4FB',
+//                   weight: 0,
+//                   // opacity: 1,
+//                   fillOpacity: 0.7
+//                 }
+//               } else {
+//                 return {
+//                   // color: '#2E709F',
+//                   color: '#BFFFFF',
+//                   weight: 0,
+//                   // opacity: 1,
+//                   fillOpacity: 0.7
+//                 }
+//               }
               
-            }
-          });
-var stormRisk = L.esri.featureLayer({
+//             }
+//           });
+
+
+var earthquakeRisk = L.esri.featureLayer({
             // url: 'https://newcoastalatlas.tamug.edu/coastal/rest/services/Tricountyatlas/Risk/MapServer/7',
-            url: 'https://newcoastalatlas.tamug.edu/coastal/rest/services/Tricountyatlas/Risk/MapServer/13',
-            // minZoom: 17,
-            where: "NAME = 'GALVESTON'",
-            style: function(feature) {
-              return {
-                color: '#BE2A38',
-                weight: 1,
-                opacity: 1,
-                fillOpacity: 0.5
-              }
-            }
+            url: 'http://newcoastalatlas.tamug.edu/coastal/rest/services/grover/Parcelswithrisk04/FeatureServer/1',
           });
-var windRisk = L.esri.featureLayer({
+
+var hurricaneRisk = L.esri.featureLayer({
             // url: 'https://newcoastalatlas.tamug.edu/coastal/rest/services/Tricountyatlas/Risk/MapServer/7',
-            url: 'https://newcoastalatlas.tamug.edu/coastal/rest/services/Tricountyatlas/Risk/MapServer/7',
-            // minZoom: 17,
-            where: "NAME = 'GALVESTON'",
-            style: function(feature) {
-              return {
-                color: '#75812A',
-                weight: 1,
-                opacity: 1,
-                fillOpacity: 0.7
-              }
-            }
+            url: 'http://newcoastalatlas.tamug.edu/coastal/rest/services/grover/Parcelswithrisk04/FeatureServer/4',
+          });
+
+var fireRisk = L.esri.featureLayer({
+            // url: 'https://newcoastalatlas.tamug.edu/coastal/rest/services/Tricountyatlas/Risk/MapServer/7',
+            url: 'http://newcoastalatlas.tamug.edu/coastal/rest/services/grover/Parcelswithrisk04/FeatureServer/5',
+          });
+
+var erosionRates = L.esri.featureLayer({
+            // url: 'https://newcoastalatlas.tamug.edu/coastal/rest/services/Tricountyatlas/Risk/MapServer/7',
+            url: 'http://newcoastalatlas.tamug.edu/coastal/rest/services/grover/Parcelswithrisk04/FeatureServer/2',
+          });
+
+var subsidenceZones = L.esri.featureLayer({
+            // url: 'https://newcoastalatlas.tamug.edu/coastal/rest/services/Tricountyatlas/Risk/MapServer/7',
+            url: 'http://newcoastalatlas.tamug.edu/coastal/rest/services/grover/Parcelswithrisk04/FeatureServer/3',
           });
 
 var groupedOverlays = {
   "Risk Layers": {
-    "Flood Risk": floodRisk,
-    "Storm Risk": stormRisk,
-    "Wind Risk": windRisk
+    "Earthquake Risk" : earthquakeRisk,
+    "Hurricane Risk" : hurricaneRisk,
+    "Fire Risk" : fireRisk,
+    "Erosion Rates" : erosionRates,
+    "Subsidence Zones" : subsidenceZones
   }
 };
 
@@ -441,10 +523,19 @@ var basemaps = {
             // header.innerHTML = e.layer.feature.properties.ADDRESS + "<div class='sidebar-subheader'>" + e.layer.feature.properties.CITY + ', ' + e.layer.feature.properties.ST + ',' + e.layer.feature.properties.ZIP; + "</div>";
 
             // console.log(e.layer.feature)
-            FloodRisk = e.layer.feature.properties.FloodRisk;
-            StormRisk = e.layer.feature.properties.StormRisk;
-            TRIRisk = e.layer.feature.properties.TRIRisk;
-            // totalRisk = (FloodRisk + StormRisk + TRIRisk) / 3;
+           
+            Hurricanes = e.layer.feature.properties.Index_HurricaneRisk;
+            Floods = e.layer.feature.properties.Index_floodRisk;
+            Wildfire = e.layer.feature.properties.Index_FireRisk;
+            Traffic = e.layer.feature.properties.Index_trafficproxvol;
+            NPLSites = e.layer.feature.properties.Index_NPLsites;
+            RMPSites = e.layer.feature.properties.Index_RMPsites;
+            TSDFSites = e.layer.feature.properties.Index_TSDF;
+            Ozone = e.layer.feature.properties.Index_oz;
+            ParticulateMatter = e.layer.feature.properties.Index_PM25;
+            Earthquake = e.layer.feature.properties.index_eqrisk;
+            Subsidence = e.layer.feature.properties.index_subs;
+            OverallRisk = (Hurricanes + Floods + Wildfire + Traffic + NPLSites + RMPSites + TSDFSites + Ozone + ParticulateMatter + Earthquake + Subsidence) / 11;
 
             console.log(e.latlng.lat + "," + e.latlng.lng)
 
@@ -558,8 +649,8 @@ map.addLayer(drawnItems);
                       bathRooms = response[0].response.results.result.bathrooms;
                       finishedSqFt = response[0].response.results.result.finishedSqFt;
                       Zestimate = response[0].response.results.result.zestimate.amount;
-                      homeDescription = "unknown"
-                      editedFacts = "unknown"
+                      homeDescription = "Data not available"
+                      editedFacts = "Data not available"
                       if(response[1].hasOwnProperty('response'))
                       {
                         if(response[1].response.hasOwnProperty('homeDescription'))
@@ -568,128 +659,112 @@ map.addLayer(drawnItems);
                           homeFacts = response[1].response.editedFacts;
                       }
                       if(bedRooms) {
-                          document.getElementById("property-type").innerHTML = bedRooms + " beds - " + bathRooms + " baths - " + finishedSqFt + " sqft";
-                        }
-                        else {
-                          document.getElementById("property-type").innerHTML = bathRooms + " baths - " + finishedSqFt + " sqft";
-                        }
-                        document.getElementById("zillow-price").innerHTML = "$" + Zestimate;
-                        document.getElementById("homeDescription").innerHTML = homeDescription;
-                      },
+                        document.getElementById("property-type").innerHTML = bedRooms + " beds - " + bathRooms + " baths - " + finishedSqFt + " sqft";
+                      }
+                      else {
+                        document.getElementById("property-type").innerHTML = bathRooms + " baths - " + finishedSqFt + " sqft";
+                      }
+                      document.getElementById("zillow-price").innerHTML = "$" + Zestimate;
+                      document.getElementById("homeDescription").innerHTML = homeDescription;
+                    },
                     error: function (xhr,status,error){
-                      document.getElementById("zillow-price").innerHTML = "unknown"
-                      document.getElementById("homeDescription").innerHTML = "unknown";
+                      document.getElementById("zillow-price").innerHTML = "Data not available"
+                      document.getElementById("homeDescription").innerHTML = "Data not available";
                       document.getElementById("property-type").innerHTML = "_ beds - " + "_ baths - " + "_ sqft";
                     }
                   });
-                  
-                } else {
-                  window.alert('No results found');
-                }
-              } else {
-                window.alert('Geocoder failed due to: ' + status);
-              }
-            });
 
-        }
-        function changeScore() {
-          
-          $('#flood').data("score",FloodRisk);
-          if( FloodRisk == 1) {
-            $('#flood').find(".inset").css("background-color","#27AE61");
-          }
-          else if( FloodRisk == 2) {
-            $('#flood').find(".inset").css("background-color","#F1C50E");
-          }
-          else if( FloodRisk == 3) {
-            $('#flood').find(".inset").css("background-color","#E77E22");
-          }
-          else if( FloodRisk == 4) {
-            $('#flood').find(".inset").css("background-color","#E84C3D");
-          }
-          else if( FloodRisk == 5) {
-            $('#flood').find(".inset").css("background-color","#961F21");
-          }
-          $("#flood").find(".bigger").html(FloodRisk);
-          
-          $('#storm').data("score",StormRisk);
-          if( StormRisk == 1) {
-            $('#storm').find(".inset").css("background-color","#27AE61");
-          }
-          else if( StormRisk == 2) {
-            $('#storm').find(".inset").css("background-color","#F1C50E");
-          }
-          else if( StormRisk == 3) {
-            $('#storm').find(".inset").css("background-color","#E77E22");
-          }
-          else if( StormRisk == 4) {
-            $('#storm').find(".inset").css("background-color","#E84C3D");
-          }
-          else if( StormRisk == 5) {
-            $('#storm').find(".inset").css("background-color","#961F21");
-          }
-          $("#storm").find(".bigger").html(StormRisk);
-          
-          $('#tri').data("score",TRIRisk);
-          if( TRIRisk == 1) {
-            $('#tri').find(".inset").css("background-color","#27AE61");
-          }
-          else if( TRIRisk == 2) {
-            $('#tri').find(".inset").css("background-color","#F1C50E");
-          }
-          else if( TRIRisk == 3) {
-            $('#tri').find(".inset").css("background-color","#E77E22");
-          }
-          else if( TRIRisk == 4) {
-            $('#tri').find(".inset").css("background-color","#E84C3D");
-          }
-          else if( TRIRisk == 5) {
-            $('#tri').find(".inset").css("background-color","#961F21");
-          }
-          $("#tri").find(".bigger").html(TRIRisk);
-          $("#totalRiskValue").html(totalRisk);
-          drawRisks();
-        }      
-        function drawRisks() {
-          $('.radial').each(function() {
-            var transform_styles = ['-webkit-transform', '-ms-transform', 'transform'];
-            $(this).find('span').fadeTo('slow', 1);
-            var score = $(this).data('score');
-            var deg = (((100 / 5) * score) / 100) * 180;
-            var rotation = deg;
-            var fill_rotation = rotation;
-            var fix_rotation = rotation * 2;
-            for(i in transform_styles) {
-              $(this).find('.circle .fill, .circle .mask.full').css(transform_styles[i], 'rotate(' + fill_rotation + 'deg)');
-              $(this).find('.circle .fill.fix').css(transform_styles[i], 'rotate(' + fix_rotation + 'deg)');
-            }
-          });
-        }
+} else {
+  window.alert('No results found');
+}
+} else {
+  window.alert('Geocoder failed due to: ' + status);
+}
+});
 
-        </script>
-        <!--         <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script> -->
-        <script type="text/javascript">
-        google.maps.event.addDomListener(window, 'load', function() {
-          var places = new google.maps.places.Autocomplete(document.getElementById('addressSearch'));
-          google.maps.event.addListener(places, 'place_changed', function() {
-            var place = places.getPlace();
-            var address = place.formatted_address;
-            var latitude = place.geometry.location.lat();
-            var longitude = place.geometry.location.lng();
-            var mesg = "Address: " + address;
-            mesg += "\nLatitude: " + latitude;
-            mesg += "\nLongitude: " + longitude;
+}
+function changeScore() {
+
+
+  function update(id,data){
+    
+      $(id).data("score",3);
+
+      if( data <= 1) {
+        $(id).find(".inset").css("background-color","#8DC540");
+      }
+      else if( data <= 2) {
+        $(id).find(".inset").css("background-color","#FEF102");
+      }
+      else if( data <= 3) {
+        $(id).find(".inset").css("background-color","#F8931F");
+      }
+      else if( data <= 4) {
+        $(id).find(".inset").css("background-color","#EE5628");
+      }
+      else if( data <= 5) {
+        $(id).find(".inset").css("background-color","#ED1B24");
+      }
+      $(id).find(".bigger").html(data);
+  }
+
+  update("#Hurricanes",Hurricanes.toFixed(1));
+  update("#Floods",Floods.toFixed(1));
+  update("#Wildfire",Wildfire.toFixed(1));
+  update("#Traffic",Traffic.toFixed(1));
+  update("#NPLSites",NPLSites.toFixed(1));
+  update("#RMPSites",RMPSites.toFixed(1));
+  update("#TSDFSites",TSDFSites.toFixed(1));
+  update("#Ozone",Ozone.toFixed(1));
+  update("#ParticulateMatter",ParticulateMatter.toFixed(1));
+  update("#Earthquake",Earthquake.toFixed(1));
+  update("#Subsidence",Subsidence.toFixed(1));
+
+  document.getElementById("OverallRisk").value = OverallRisk;
+  
+  drawRisks();
+}      
+function drawRisks() {
+  $('.radial').each(function() {
+    var transform_styles = ['-webkit-transform', '-ms-transform', 'transform'];
+    $(this).find('span').fadeTo('slow', 1);
+    var score = $(this).data('score');
+    score = 3;
+    var deg = (((100 / 5) * score) / 100) * 180;
+    var rotation = deg;
+    var fill_rotation = rotation;
+    var fix_rotation = rotation * 2;
+    for(i in transform_styles) {
+      $(this).find('.circle .fill, .circle .mask.full').css(transform_styles[i], 'rotate(' + fill_rotation + 'deg)');
+      $(this).find('.circle .fill.fix').css(transform_styles[i], 'rotate(' + fix_rotation + 'deg)');
+    }
+  });
+}
+
+</script>
+<!--         <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script> -->
+<script type="text/javascript">
+google.maps.event.addDomListener(window, 'load', function() {
+  var places = new google.maps.places.Autocomplete(document.getElementById('addressSearch'));
+  google.maps.event.addListener(places, 'place_changed', function() {
+    var place = places.getPlace();
+    var address = place.formatted_address;
+    var latitude = place.geometry.location.lat();
+    var longitude = place.geometry.location.lng();
+    var mesg = "Address: " + address;
+    mesg += "\nLatitude: " + latitude;
+    mesg += "\nLongitude: " + longitude;
                 // alert(mesg);
                 map.setView([latitude, longitude], 17);
                 results.clearLayers();
                 results.addLayer(L.marker([latitude,longitude]));
               });
-        });
+});
 
 
-        </script>
+</script>
 
-        <div class="leaflet-control-attribution leaflet-control"><a href="http://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> | Buyers Beware </div>
-      </body>
 
-      </html>
+</body>
+
+</html>
