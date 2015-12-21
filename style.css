@@ -185,16 +185,9 @@ input[type=search]:focus {
 }
 .mask .fill {
   clip: rect(0px, 30px, 60px, 0px);
-}
-#flood .mask .fill {
   background-color: grey;
 }
-#storm .mask .fill {
-  background-color: grey;
-}
-#tri .mask .fill {
-  background-color: grey;
-}
+
 .inset {
   width: 40px !important;
   height: 40px !important;

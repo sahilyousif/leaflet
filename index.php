@@ -98,7 +98,7 @@ if(!isset($_SESSION['username'])) {
             <div class="item-header">DETAILED RISKS&nbsp; <a href="detailed_risk.html"><img src="images/external_link.png" width="15px" /></a></div>
             <div class="risk">
               <div class="col-1">
-                <div class="radial" data-score="0" id="Hurricanes">
+                <div class="radial" data-score="2" id="Hurricanes">
                   <div class="circle">
                     <div class="mask full">
                       <div class="fill"></div>
@@ -689,7 +689,8 @@ function changeScore() {
 
   function update(id,data){
     
-      $(id).data("score",3);
+      $(id).data("score",data);
+      console.log(id)
 
       if( data <= 1) {
         $(id).find(".inset").css("background-color","#8DC540");
@@ -730,7 +731,6 @@ function drawRisks() {
     var transform_styles = ['-webkit-transform', '-ms-transform', 'transform'];
     $(this).find('span').fadeTo('slow', 1);
     var score = $(this).data('score');
-    score = 3;
     var deg = (((100 / 5) * score) / 100) * 180;
     var rotation = deg;
     var fill_rotation = rotation;
