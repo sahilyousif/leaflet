@@ -80,7 +80,7 @@ if(!isset($_SESSION['username'])) {
 
       <div class="container">
         <div class="col-2">
-          <div class="item-header">OVERALL RISK SCORE&nbsp; <a href="overall_risk.html"><img src="images/external_link.png" width="15px" /></a></div>
+          <div class="item-header">OVERALL RISK SCORE&nbsp; <a href="risk_description.html"><img src="images/external_link.png" width="15px" /></a></div>
           <div class="totalRisk">
 
             <!-- <div id="totalRiskValue">Average</div> -->
@@ -95,7 +95,7 @@ if(!isset($_SESSION['username'])) {
          
 
             <!-- _______________________DETAILED RISKS ________________________ -->
-            <div class="item-header">DETAILED RISKS&nbsp; <a href="detailed_risk.html"><img src="images/external_link.png" width="15px" /></a></div>
+            <div class="item-header">DETAILED RISKS&nbsp; <a href="risk_description.html"><img src="images/external_link.png" width="15px" /></a></div>
             <div class="risk">
               <div class="col-1">
                 <div class="radial" data-score="2" id="Hurricanes">
@@ -469,8 +469,8 @@ var subsidenceZones = L.esri.featureLayer({
 var groupedOverlays = {
   "Risk Layers": {
     "Earthquake Risk" : earthquakeRisk,
-    "Hurricane Risk" : hurricaneRisk,
-    "Fire Risk" : fireRisk,
+    // "Hurricane Risk" : hurricaneRisk,
+    // "Fire Risk" : fireRisk,
     "Erosion Rates" : erosionRates,
     "Subsidence Zones" : subsidenceZones
   }
