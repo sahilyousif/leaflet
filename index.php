@@ -1,15 +1,9 @@
-<?php
-session_start();
-if(!isset($_SESSION['username'])) {
-  header("Location: login.php");
-  exit;
-}
-?>
+
 <html>
 
 <head>
   <meta charset=utf-8 />
-  <title>Galveston</title>
+  <title>BuyersB-Where</title>
   <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
   
 
@@ -28,7 +22,7 @@ if(!isset($_SESSION['username'])) {
   <script src="dist/leaflet.draw.js"></script>
   <script src="src/L.Control.Sidebar.js"></script>
   <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:500,400,300,700' rel='stylesheet' type='text/css'>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZ2WWx3aY0ZYv0rj7nGmODxc3DAW3BV2Y&signed_in=true&sensor=false&libraries=places"></script>
   <script src="dist/leaflet.groupedlayercontrol.min.js"></script>
   <script src="dist/Control.Loading.js"></script>
@@ -80,7 +74,7 @@ if(!isset($_SESSION['username'])) {
 
       <div class="container">
         <div class="col-2">
-          <div class="item-header">OVERALL RISK SCORE&nbsp; <a href="risk_description.html"><img src="images/external_link.png" width="15px" /></a></div>
+          <div class="item-header">OVERALL RISK SCORE&nbsp; <a href="risk_description.html" target="_blank"><img src="images/external_link.png" width="15px" /></a></div>
           <div class="totalRisk">
 
             <!-- <div id="totalRiskValue">Average</div> -->
@@ -95,7 +89,7 @@ if(!isset($_SESSION['username'])) {
          
 
             <!-- _______________________DETAILED RISKS ________________________ -->
-            <div class="item-header">DETAILED RISKS&nbsp; <a href="risk_description.html"><img src="images/external_link.png" width="15px" /></a></div>
+            <div class="item-header">DETAILED RISKS&nbsp; <a href="risk_description.html" target="_blank"><img src="images/external_link.png" width="15px" /></a></div>
             <div class="risk">
               <div class="col-1">
                 <div class="radial" data-score="2" id="Hurricanes">
@@ -397,9 +391,10 @@ var parcelLayer = L.esri.featureLayer({
             style: function(feature) {
 
               return {
-                color: '#c0c0c0',
-                weight: 1,
-                opacity: 1
+                color: '#ffffff',
+                weight: 1.5,
+                opacity: 0.7,
+                fillOpacity: 0.1
               }
             }
           }).addTo(map);
@@ -446,15 +441,15 @@ var earthquakeRisk = L.esri.featureLayer({
             url: 'http://newcoastalatlas.tamug.edu/coastal/rest/services/grover/Parcelswithrisk04/FeatureServer/1',
           });
 
-var hurricaneRisk = L.esri.featureLayer({
-            // url: 'https://newcoastalatlas.tamug.edu/coastal/rest/services/Tricountyatlas/Risk/MapServer/7',
-            url: 'http://newcoastalatlas.tamug.edu/coastal/rest/services/grover/Parcelswithrisk04/FeatureServer/4',
-          });
+// var hurricaneRisk = L.esri.featureLayer({
+//             // url: 'https://newcoastalatlas.tamug.edu/coastal/rest/services/Tricountyatlas/Risk/MapServer/7',
+//             url: 'http://newcoastalatlas.tamug.edu/coastal/rest/services/grover/Parcelswithrisk04/FeatureServer/4',
+//           });
 
-var fireRisk = L.esri.featureLayer({
-            // url: 'https://newcoastalatlas.tamug.edu/coastal/rest/services/Tricountyatlas/Risk/MapServer/7',
-            url: 'http://newcoastalatlas.tamug.edu/coastal/rest/services/grover/Parcelswithrisk04/FeatureServer/5',
-          });
+// var fireRisk = L.esri.featureLayer({
+//             // url: 'https://newcoastalatlas.tamug.edu/coastal/rest/services/Tricountyatlas/Risk/MapServer/7',
+//             url: 'http://newcoastalatlas.tamug.edu/coastal/rest/services/grover/Parcelswithrisk04/FeatureServer/5',
+//           });
 
 var erosionRates = L.esri.featureLayer({
             // url: 'https://newcoastalatlas.tamug.edu/coastal/rest/services/Tricountyatlas/Risk/MapServer/7',
@@ -496,14 +491,15 @@ var basemaps = {
         parcelLayer.resetStyle(oldId);
       }
       oldId = e.layer.feature.id;
+      if (oldId == selId)
+        return;
 
             // document.getElementById('info-pane').innerHTML = 'AREA: ' + e.layer.feature.properties.NAME + ' ' + e.layer.feature.properties.RISK_AREA;
             e.layer.bringToFront();
             parcelLayer.setFeatureStyle(e.layer.feature.id, {
               color: '#16A085',
               weight: 1,
-              opacity: 1,
-              position: 'bottomright'
+              opacity: 1
             });
           });
 
@@ -513,18 +509,26 @@ var basemaps = {
       selId = e.layer.feature.id;
 
       parcelLayer.setFeatureStyle(e.layer.feature.id, {
-        color: '#F39C12',
-        weight: 1
+        color: '#EEAC34',
+        weight: 1,
+        fillOpacity: 0.6
       });
             // console.log(e)
 
             document.getElementById("property-image").innerHTML = "<img src='https://maps.googleapis.com/maps/api/streetview?size=600x400&location=" + e.latlng.lat + "," + e.latlng.lng + "&pitch=-0.76&key=AIzaSyBZ2WWx3aY0ZYv0rj7nGmODxc3DAW3BV2Y' width='100%'>"
             
-            // var header = document.getElementById("sidebar-header");
-            // header.innerHTML = e.layer.feature.properties.ADDRESS + "<div class='sidebar-subheader'>" + e.layer.feature.properties.CITY + ', ' + e.layer.feature.properties.ST + ',' + e.layer.feature.properties.ZIP; + "</div>";
-
             // console.log(e.layer.feature)
-           
+            AssessedPrice = e.layer.feature.properties.VAL10TOT;
+            if(!AssessedPrice)
+            {
+              AssessedPrice = "Data not available"
+            }
+            else
+            {
+              document.getElementById("assessed-price").innerHTML = "$" + AssessedPrice.toFixed(0).replace(/(\d)(?=(\d{3})+$)/g, "$1,");
+            }
+
+
             Hurricanes = e.layer.feature.properties.Index_HurricaneRisk;
             Floods = e.layer.feature.properties.Index_floodRisk;
             Wildfire = e.layer.feature.properties.Index_FireRisk;
@@ -665,7 +669,7 @@ map.addLayer(drawnItems);
                       else {
                         document.getElementById("property-type").innerHTML = bathRooms + " baths - " + finishedSqFt + " sqft";
                       }
-                      document.getElementById("zillow-price").innerHTML = "$" + Zestimate;
+                      document.getElementById("zillow-price").innerHTML = "$" + parseInt(Zestimate).toFixed(0).replace(/(\d)(?=(\d{3})+$)/g, "$1,");
                       document.getElementById("homeDescription").innerHTML = homeDescription;
                     },
                     error: function (xhr,status,error){
@@ -690,7 +694,7 @@ function changeScore() {
   function update(id,data){
     
       $(id).data("score",data);
-      console.log(id)
+      // console.log(id)
 
       if( data <= 1) {
         $(id).find(".inset").css("background-color","#8DC540");
