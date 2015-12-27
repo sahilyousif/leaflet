@@ -44,7 +44,7 @@
 </head>
 
 <body>
-  <marquee behaviour="scroll" direction="left">This is a test site for Buyers Beware. All content is strictly confidential.</marquee>
+  <marquee behaviour="scroll" direction="left">This is a test site for Buyers B-Where. All content is strictly confidential.</marquee>
 
   <div id="map"></div>
 
