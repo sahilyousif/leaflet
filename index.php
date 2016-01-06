@@ -1,5 +1,15 @@
 
-<html>
+<?php
+
+session_start();
+
+if (!(isset($_SESSION['username']))) {
+
+header ("Location: login.php");
+
+}
+
+?><html>
 
 <head>
   <meta charset=utf-8 />
@@ -37,6 +47,9 @@
 
   <script src="//cdn.jsdelivr.net/leaflet.esri.renderers/2.0.0/esri-leaflet-renderers.js"></script>
 
+  <link rel="stylesheet" type="text/css" href="css/tooltipster.css" />
+  <script type="text/javascript" src="js/jquery.tooltipster.min.js"></script>
+
   <style>
 
   </style>
@@ -47,6 +60,10 @@
   <marquee behaviour="scroll" direction="left">This is a test site for Buyers B-Where. All content is strictly confidential.</marquee>
 
   <div id="map"></div>
+
+  <div class="logo">
+    <img src="images/logo-125-new.png">
+  </div>
 
   <input type="search" name="addressSearch" id="addressSearch" placeholder="Enter an address">
 
@@ -74,7 +91,7 @@
 
       <div class="container">
         <div class="col-2">
-          <div class="item-header">OVERALL RISK SCORE&nbsp; <a href="risk_description.html" target="_blank"><img src="images/external_link.png" width="15px" /></a></div>
+          <div class="item-header">OVERALL HAZARD RISK SCORE&nbsp; <a href="risk_description.html" target="_blank"><img src="images/external_link.png" width="15px" /></a></div>
           <div class="totalRisk">
 
             <!-- <div id="totalRiskValue">Average</div> -->
@@ -89,10 +106,11 @@
          
 
             <!-- _______________________DETAILED RISKS ________________________ -->
-            <div class="item-header">DETAILED RISKS&nbsp; <a href="risk_description.html" target="_blank"><img src="images/external_link.png" width="15px" /></a></div>
+            <div class="item-header">SPECIFIC HAZARD RISKS&nbsp; <a href="risk_description.html" target="_blank"><img src="images/external_link.png" width="15px" /></a></div>
             <div class="risk">
               <div class="col-1">
                 <div class="radial" data-score="2" id="Hurricanes">
+                  <a href="#" class="tooltip" title="Hurricase Risk Zones. Risk area zones (1 - 5 ) are identified by hurricane categories.">
                   <div class="circle">
                     <div class="mask full">
                       <div class="fill"></div>
@@ -109,8 +127,10 @@
                   <div class="tag">
                     Hurricanes
                   </div>  
+                </a>
                 </div>
                 <div class="radial" data-score="0" id="Floods">
+                  <a href="#" class="tooltip" title="Risk of flooding">
                   <div class="circle">
                     <div class="mask full">
                       <div class="fill"></div>
@@ -126,9 +146,11 @@
                   </div>
                   <div class="tag">
                     Floods
-                  </div>  
+                  </div>
+                  </a>  
                 </div>
                 <div class="radial" data-score="0" id="Wildfire">
+                  <a href="#" class="tooltip" title="Potential risk of wildland fires burning flammable structures!">
                   <div class="circle">
                     <div class="mask full">
                       <div class="fill"></div>
@@ -145,8 +167,9 @@
                   <div class="tag">
                     Wildfire
                   </div>  
+                  </a>
                 </div>
-                <div class="radial" data-score="0" id="Traffic">
+               <!--  <div class="radial" data-score="0" id="Traffic">
                   <div class="circle">
                     <div class="mask full">
                       <div class="fill"></div>
@@ -163,8 +186,9 @@
                   <div class="tag">
                     Traffic
                   </div>  
-                </div>
+                </div> -->
                 <div class="radial" data-score="0" id="NPLSites">
+                  <a href="#" class="tooltip" title="Count of proposed and listed NPL sites within a distance of 5km (or the nearest one beyond 5km), each divided by the distance in kms">
                   <div class="circle">
                     <div class="mask full">
                       <div class="fill"></div>
@@ -179,10 +203,12 @@
                     <span class='little'>/ 5</span>
                   </div>
                   <div class="tag">
-                    NPS Sites
+                    NPL Sites
                   </div>  
+                  </a>
                 </div>
                 <div class="radial" data-score="0" id="RMPSites">
+                  <a href="#" class="tooltip" title="The count of RMP (Risk Management Plan) facilities within 5 km (center of the parcel to the point location of the facility) , divided by distance,">
                   <div class="circle">
                     <div class="mask full">
                       <div class="fill"></div>
@@ -200,10 +226,12 @@
                     RMP Sites
                   </div>  
                 </div>
+                  </a>
               </div>
 
               <div class="col-1">
                 <div class="radial" data-score="0" id="TSDFSites">
+                  <a href="#" class="tooltip" title="The count of TSDF (Hazardous waste Treatment, Storage and Disposal facilities) sites within 5 km (center of the parcel to the point location of the facility) , divided by distance">
                   <div class="circle">
                     <div class="mask full">
                       <div class="fill"></div>
@@ -220,8 +248,10 @@
                   <div class="tag">
                     TSDF Sites
                   </div>  
+                </a>
                 </div>
                 <div class="radial" data-score="0" id="Ozone">
+                  <a href="#" class="tooltip" title="The May–September 2011 (summer/ ozone season) average of daily-maximum 8-hour-average ozone concentrations, in parts per billion (ppb)">
                   <div class="circle">
                     <div class="mask full">
                       <div class="fill"></div>
@@ -238,8 +268,10 @@
                   <div class="tag">
                     Ozone
                   </div>  
+                </a>
                 </div>
                 <div class="radial" data-score="0" id="ParticulateMatter">
+                  <a href="#" class="tooltip" title="Annual 2011 average PM2.5 concentration in micrograms per cubic meter (μg/m3)">
                   <div class="circle">
                     <div class="mask full">
                       <div class="fill"></div>
@@ -256,8 +288,10 @@
                   <div class="tag">
                     Particulate Matter
                   </div>  
+                </a>
                 </div>
                 <div class="radial" data-score="0" id="Earthquake">
+                  <a href="#" class="tooltip" title="Estimated risk from Earthquake based on estimated Earthquake Ground Acceleration">
                   <div class="circle">
                     <div class="mask full">
                       <div class="fill"></div>
@@ -274,8 +308,10 @@
                   <div class="tag">
                     Earthquake
                   </div>  
+                </a>
                 </div>
                 <div class="radial" data-score="0" id="Subsidence">
+                  <a href="#" class="tooltip" title="Risk of Subsidence along the Coastal zone">
                   <div class="circle">
                     <div class="mask full">
                       <div class="fill"></div>
@@ -292,6 +328,7 @@
                   <div class="tag">
                     Subsidence
                   </div>  
+                </a>
                 </div>
               </div>
 
@@ -323,7 +360,7 @@
               Cooling: Window Units<br>
             </p>
           </div>
-
+<a href="#" class="tooltip" data-placement="top" title="Hooray!">Hover</a>
 
           <div class="col-2">
             <div class="item-header">DESCRIPTION</div>
@@ -768,7 +805,15 @@ google.maps.event.addDomListener(window, 'load', function() {
 
 
 </script>
-
+<script>
+        $(document).ready(function() {
+            $('.tooltip').tooltipster({
+              animation: 'fade',
+              maxWidth: 300,
+              offsetX: 30
+            });
+        });
+    </script>
 
 </body>
 

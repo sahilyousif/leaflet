@@ -8,8 +8,8 @@
 .leaflet-control-zoom a.leaflet-control-loading ,
 .leaflet-control-zoomslider a.leaflet-control-loading {
     display: none;
-    margin-left:380px;
-    margin-top:10px;
+    margin-left:510px;
+    margin-top:40px;
     width: 40px;
     height: 40px;
     border-radius: 8px !important;

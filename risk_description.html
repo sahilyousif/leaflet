@@ -7,87 +7,121 @@
 	<style>
 	html, body {height:100%; font-family: 'Open Sans';}
 	/*html {display:table; width:100%;}*/
-	body {width:60%;  margin: 20px auto; }
+	body { background-color: #E9EDEF; margin: 0;}
+	.content{width:65%; margin: 0 auto; padding: 80px 0 80px 0; background-color: #ffffff;}
 	.heading {font-size: 36px; padding: 10px 0 10px 0; font-weight: 300; align="left"}
-	table {  border-collapse: collapse; border: 1px solid #b0b0b0; }
+	table {  border-collapse: collapse; border: 1px solid #b0b0b0; overflow: auto}
 	th, td { padding: 15px; text-align: left;}
 	tr:nth-child(even) {background-color: #f2f2f2}
 	th { background-color: #4CAF50; color: white;}
-	.container {padding-top: 10px; padding-bottom: 10px;}
-	.logo {position: absolute; left:0px; width: 10%;}
+	.container {padding: 0 144px}
+	
 	</style>
 </head>
 <body>
 	
+	<div class="content">
 	
-
 	<div class="container">
-		<div class="heading">Overall Risk Score</div>
-		<p>
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas scelerisque velit blandit magna lacinia pharetra. Suspendisse tortor ipsum, auctor sit amet eleifend non, interdum eget sapien. Nulla eget nibh ut eros dignissim mollis. Suspendisse vel felis rhoncus, sagittis mauris vitae, pretium turpis. Donec pulvinar nibh venenatis consequat iaculis. Suspendisse faucibus lacinia diam eu semper.
-		</p>
+		<div class="heading">Scoring Scale</div>
+		<p>All risks are scored on a relative scale of 1-5: That is, a parcel with a score of 5 is estimated to be at five times more risk from the specific hazard than a parcel with a risk score of 1 for the same hazard. A risk score of 0 implies absence of any known threat from the specific hazard to the slected parcel.</p>
+		<div class="heading">Overall Hazard Risk Score</div>
+      <p>Overall score is the mean of all the specific hazard risk scores available for the the selected parcel. </p>
 	</div>
 	<div class="container">
-		<div class="heading">Detailed Risks</div>
+		<div class="heading">Specific Hazard Risks</div>
 	<table>
 
 
 		<thead>
 			<tr>
 				<th width="20%">Risk</th>
-				<th width="80%">Description</th>
+				<th width="80%"><u>Description</u></th>
 
 			</tr>
 		</thead>
 		<tbody>
 			<tr>
 				<td>Hurricanes</td>
-				<td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In imperdiet augue sem, id efficitur diam luctus id. Etiam a nibh nec elit iaculis blandit. Suspendisse potenti. Nullam elit nisi, sollicitudin ullamcorper nulla et, bibendum interdum elit.</td>
+				<td><u>Indicator</u>: Hurricase Risk Zones, presented on a relative scale of 1-5.<br>
+				  <br>
+			    <u>Description</u>: This layer is derived from the Texas A and M / DEM Risk Area maps. Risk area zones (1 - 5 ) are identified by hurricane categories. Area 1 corresponds to a Category 1 Hurricane. </td>
 			</tr>
 			<tr>
 				<td>Floods</td>
-				<td>Etiam condimentum, turpis rutrum scelerisque fringilla, lorem orci faucibus metus, in blandit neque dolor a turpis. Nullam nec nibh laoreet, tincidunt lectus non, elementum ligula. Sed lobortis ipsum non lectus sollicitudin</td>
+				<td><u>Indicator</u>: Risk of flooding, presented on a relative scale of 1-5.<br>
+				  <br>
+			    <u>Description</u>: Parcels within the 100 year flood plain are scored the highest (5), parcels within 500 year flood plain are considered to be at medium risk (3).<br></td>
 			</tr>
 			<tr>
 				<td>Wildfire</td>
-				<td>pulvinar laoreet nibh laoreet. Ut dapibus euismod quam, non dapibus augue mattis quis. Praesent accumsan dui ut libero hendrerit cursus.</td>
+				<td><u>Indicator</u>: Potential risk of wildland fires burning flammable structures, presented on a relative scale of 1-5.<br>
+				  <br>
+			    <u>Description</u>: The map was developed from mapping done by the Rocky Mountain Fire Sciences Lab for the entire United States. Data for Texas was extracted from a raster grid and converted to shapefile format. The end map was an integration of 3 GIS data layers: housing density, potential fire exposure, and extreme weather potential.<br></td>
 			</tr>
 			<tr>
 				<td>Traffic</td>
-				<td>Donec id libero risus. Maecenas accumsan blandit neque, vitae lacinia tortor viverra in. Sed sed elit neque. Cras vehicula, est quis volutpat auctor, dui tortor vestibulum lacus, id fermentum augue libero vitae diam. Morbi ornare congue felis in ornare. Nulla fringilla gravida ullamcorper.</td>
+				<td><u>Indicator</u>:&nbsp;The count of vehicles per day within 500 meters of the census block centroid in whci the selected parcel is located, divided by distance in meters, weighted by avergae block population,&nbsp;presented on a relative scale of 1-5.<br>
+				  <br>
+			    <u>Description</u>: This measure of traffic proximity is &nbsp;based on average annual daily traffic (AADT) estimates in the Highway Performance Monitoring System (HPMS 2011) dataset in the Department of Transportation (DOT) National Transportation Atlas Database (NTAD). The HPMS highway data is maintained by states and compiled by DOT.<br></td>
 			</tr>
 			<tr>
-				<td>NPS Sites</td>
-				<td>Nam sodales consectetur varius. Aenean fermentum turpis id nulla finibus accumsan a non massa. Ut porttitor pulvinar neque a mattis.</td>
+				<td>NPL Sites</td>
+				<td><u>Indicator</u>: Count of proposed and listed NPL sites within a distance of 5km (or the nearest one beyond 5km), each divided by the distance in kms, presented on a relative scale of 1-5.<br>
+				  <br>
+			    <u>Description</u>: EPA places sites on the National Priorities List (NPL) (a key subset of all “Superfund” sites) based on a defined set of criteria and a public comment process. Inclusion of a site on the NPL does not impose a financial obligation on EPA, nor does it assign liability to any party. The NPL serves primarily informational purposes, identifying sites that appear to warrant remedial actions, thereby conveying to policymakers and the public the size and nature of the nation’s cleanup challenges. </td>
 			</tr>
 			<tr>
 				<td>RMP Sites</td>
-				<td>Interdum et malesuada fames ac ante ipsum primis in faucibus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam sit amet eros non erat convallis accumsan vitae sed ligula. Morbi sodales lorem at gravida lacinia. Maecenas orci eros, rhoncus sed vestibulum non</td>
+				<td><u>Indicator</u>: The count of RMP (Risk Management Plan) facilities within 5 km (center of the parcel to the point location of the facility) , divided by distance, presented on a relative scale of 1-5. Absence of any RMP facility is denoted by a score of 0.<br>
+				  <br>
+				  <u>Description</u>: RMP facilities are those facilities required by the Cleam Air Act (CAA) to file risk management plans. The regulations under CAA section 112(r) establishes a List of Regulated Substances—72 substances listed because of their high acute toxicity and 60 because of their flammable or explosive potential—along with threshold quantities (TQs) for each. The listed substances are those that pose the greatest risk of harm from accidental releases. If a facility maintains a quantity of any such chemical above those TQs, it must file an RMP with EPA.<br>
+				  <br>
+				  More information is available at:<br>
+				  1. RMP program webpage (<a href="http://www2.epa.gov/rmp">http://www2.epa.gov/rmp</a>)<br>
+			    2. RMP Info database stored in Envirofacts (<a href="http://www.epa.gov/enviro/facts/rcrainfo/search.html">http://www.epa.gov/enviro/facts/rcrainfo/search.html</a>).<br></td>
 			</tr>
 			<tr>
 				<td>TSDF Sites</td>
-				<td>vehicula vel tellus. Morbi blandit placerat neque, sed fermentum dolor molestie sit amet. Morbi ipsum lacus, efficitur non elit quis, vulputate interdum enim. Fusce consequat mi eu pellentesque faucibus. Praesent sit amet arcu at dui tempor feugiat</td>
+				<td><u>Indicator</u>: The count of TSDF (Hazardous waste Treatment, Storage and Disposal facilities) sites within 5 km (center of the parcel to the point location of the facility) , divided by distance, presented on a relative scale of 1-5. Absence of any TSDF facility is denoted by a score of 0.<br>
+				  <br>
+				  <u>Description</u>: The Resource Conservation and Recovery Act (RCRA) was further amended in 1984 with the addition of the Hazardous and Solid Waste Amendments. RCRA Subtitle C establishes a federal program to manage hazardous wastes from “cradle to grave,” or from generation to disposal, to ensure that hazardous waste is managed in a manner that protects human health and the environment. EPA has developed Subtitle C regulations governing hazardous waste generation, transportation, and the several hundred active treatment, storage or disposal facilities (TSDFs).<br>
+				  <br>
+				  More information about TSDF &nbsp;is available at:<br>
+				  1. Hazardous waste webpage (<a href="http://www.epa.gov/epawaste/hazard">http://www.epa.gov/epawaste/hazard</a>) <br>
+				  2. TSD webpage (<a href="http://www.epa.gov/epawaste/hazard/tsd/">http://www.epa.gov/epawaste/hazard/tsd/</a>) <br>
+				  3. Waste information page (<a href="http://www.epa.gov/epawaste/inforesources/">http://www.epa.gov/epawaste/inforesources/</a>)<br>
+			    4. RCRAInfo page (<a href="http://www.epa.gov/epawaste/inforesources/data">http://www.epa.gov/epawaste/inforesources/data</a>).<br></td>
 			</tr>
 			<tr>
 				<td>Ozone</td>
-				<td>Vivamus placerat nisi vitae enim vehicula convallis. Maecenas sollicitudin molestie nulla, vel consectetur mi ultrices nec. In vel nibh ac nulla mollis vestibulum. Donec aliquam, odio vel ullamcorper tristique, leo tellus pharetra turpis, nec lacinia felis</td>
+				<td><u>Indicator</u>:&nbsp;The May–September 2011 (summer/ ozone season) average of daily-maximum 8-hour-average ozone concentrations, in parts per billion (ppb),&nbsp;presented on a relative scale of 1-5. <br>
+				  <br>
+			    <u>Description</u>: Ozone data are estimated by EPA from a combination of monitoring data and Community Multi-scale Air Quality (CMAQ) modeling. The downscaling was done by EPA using fusion model that utilize both air quality monitoring data from NAMS/SLAMS (data collected by EPA, state, local and tribal air pollution control agencies at more than 600 hundred monitors nationwide) and numerical output from the Models-3/CMAQ model. This downscaling approach is designed to provide daily, predictive PM2.5 (daily average) and O3 (daily 8-hour maximum) surfaces for a given year, such as 2011, at specified points.<br></td>
 			</tr>
 			<tr>
 				<td>Particulate Matter</td>
-				<td>tellus quis augue. Quisque ultricies eu magna eget ultricies. Nulla nec leo at felis fringilla iaculis in et erat. Donec est neque, finibus in bibendum et, tempor vitae purus.</td>
+				<td><u>Indicator</u>: Annual 2011 average PM2.5 concentration in micrograms per cubic meter (μg/m3), presented on a relative scale of 1-5. <br>
+				  <br>
+			    <u>Description</u>: PM2.5 data are estimated by EPA from a combination of monitoring data and Community Multi-scale Air Quality (CMAQ) modeling. The downscaling was done by EPA using fusion model that utilize both air quality monitoring data from NAMS/SLAMS (data collected by EPA, state, local and tribal air pollution control agencies at more than 600 hundred monitors nationwide) and numerical output from the Models-3/CMAQ model. This downscaling approach is designed to provide daily, predictive PM2.5 (daily average) and O3 (daily 8-hour maximum) surfaces for a given year, such as 2011, at specified points.</td>
 			</tr>
 			<tr>
 				<td>Earthquake</td>
-				<td>Curabitur tristique eros pulvinar vehicula varius. Nulla augue elit, vestibulum nec augue sit amet, mattis pellentesque tellus. Nam ut nisi sodales tellus rutrum imperdiet vel id nunc.</td>
+				<td><u>Indicator</u>: Estimated risk from Earthquake based on estiamted Earthquake Ground Acceleration,&nbsp;presented on a relative scale of 1-5. <br>
+				  <br>
+				  <u>Description</u>: This layer is derived from the USGS. Ground acceleration is measured as a percent of gravity (distance/time). The dataset utilized showed the peak acceleration (% gravity) with 10 % probability of exceedence in 50 years. The lowest is 0-2%, highest is 32+%.<br>
+			    <br></td>
 			</tr>
 			<tr>
 				<td>Subsidence</td>
-				<td>Nulla sed diam ligula. Sed viverra vehicula lorem, nec luctus ante luctus ut. Donec eleifend orci et efficitur euismod. Etiam vulputate placerat consequat. Maecenas laoreet, ipsum in luctus tincidunt, dui augue sollicitudin mi, sed sagittis ex ante id erat. Pellentesque feugiat vulputate erat, non tempor sem dignissim quis. In maximus bibendum massa nec facilisis.</td>
+				<td><u>Indicator</u>: Risk of Subsidence along the Coastal zone<br>
+				  <br>
+			    <u>Description</u>: The dataset was created by Texas Geographic society depictign the occurrence of subsidence along the Texas coastline. The base data utilized to creae this indicator shows gradation of subsidence from 1 to 10 feet in 5 groupings<br></td>
 			</tr>
 		</tbody>
 	</table>
 
 </div>
-
+</div>
 </body>
 </html>
