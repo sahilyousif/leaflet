@@ -360,7 +360,7 @@ header ("Location: login.php");
               Cooling: Window Units<br>
             </p>
           </div>
-<a href="#" class="tooltip" data-placement="top" title="Hooray!">Hover</a>
+
 
           <div class="col-2">
             <div class="item-header">DESCRIPTION</div>
