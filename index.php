@@ -110,7 +110,7 @@ header ("Location: login.php");
             <div class="risk">
               <div class="col-1">
                 <div class="radial" data-score="2" id="Hurricanes">
-                  <a href="#" class="tooltip" title="Hurricase Risk Zones. Risk area zones (1 - 5 ) are identified by hurricane categories.">
+                  <a href="#" class="tooltip" title="Hurricane Risk">
                   <div class="circle">
                     <div class="mask full">
                       <div class="fill"></div>
@@ -130,7 +130,7 @@ header ("Location: login.php");
                 </a>
                 </div>
                 <div class="radial" data-score="0" id="Floods">
-                  <a href="#" class="tooltip" title="Risk of flooding">
+                  <a href="#" class="tooltip" title="Flooding Risk">
                   <div class="circle">
                     <div class="mask full">
                       <div class="fill"></div>
@@ -150,7 +150,7 @@ header ("Location: login.php");
                   </a>  
                 </div>
                 <div class="radial" data-score="0" id="Wildfire">
-                  <a href="#" class="tooltip" title="Potential risk of wildland fires burning flammable structures!">
+                  <a href="#" class="tooltip" title="Wildfire risk">
                   <div class="circle">
                     <div class="mask full">
                       <div class="fill"></div>
@@ -188,7 +188,7 @@ header ("Location: login.php");
                   </div>  
                 </div> -->
                 <div class="radial" data-score="0" id="NPLSites">
-                  <a href="#" class="tooltip" title="Count of proposed and listed NPL sites within a distance of 5km (or the nearest one beyond 5km), each divided by the distance in kms">
+                  <a href="#" class="tooltip" title="Proximity to National Priorities List Sites">
                   <div class="circle">
                     <div class="mask full">
                       <div class="fill"></div>
@@ -208,7 +208,7 @@ header ("Location: login.php");
                   </a>
                 </div>
                 <div class="radial" data-score="0" id="RMPSites">
-                  <a href="#" class="tooltip" title="The count of RMP (Risk Management Plan) facilities within 5 km (center of the parcel to the point location of the facility) , divided by distance,">
+                  <a href="#" class="tooltip" title="Proximity to Risk Management Plan Sites">
                   <div class="circle">
                     <div class="mask full">
                       <div class="fill"></div>
@@ -231,7 +231,7 @@ header ("Location: login.php");
 
               <div class="col-1">
                 <div class="radial" data-score="0" id="TSDFSites">
-                  <a href="#" class="tooltip" title="The count of TSDF (Hazardous waste Treatment, Storage and Disposal facilities) sites within 5 km (center of the parcel to the point location of the facility) , divided by distance">
+                  <a href="#" class="tooltip" title="Proximity to Hazardous Waste Treatment Storage and Disposal Facilities">
                   <div class="circle">
                     <div class="mask full">
                       <div class="fill"></div>
@@ -251,7 +251,7 @@ header ("Location: login.php");
                 </a>
                 </div>
                 <div class="radial" data-score="0" id="Ozone">
-                  <a href="#" class="tooltip" title="The May–September 2011 (summer/ ozone season) average of daily-maximum 8-hour-average ozone concentrations, in parts per billion (ppb)">
+                  <a href="#" class="tooltip" title="Average Seasonal Ozone Conc. in 2011">
                   <div class="circle">
                     <div class="mask full">
                       <div class="fill"></div>
@@ -271,7 +271,7 @@ header ("Location: login.php");
                 </a>
                 </div>
                 <div class="radial" data-score="0" id="ParticulateMatter">
-                  <a href="#" class="tooltip" title="Annual 2011 average PM2.5 concentration in micrograms per cubic meter (μg/m3)">
+                  <a href="#" class="tooltip" title="Average Annual PM2.5 Conc. in 2011">
                   <div class="circle">
                     <div class="mask full">
                       <div class="fill"></div>
@@ -291,7 +291,7 @@ header ("Location: login.php");
                 </a>
                 </div>
                 <div class="radial" data-score="0" id="Earthquake">
-                  <a href="#" class="tooltip" title="Estimated risk from Earthquake based on estimated Earthquake Ground Acceleration">
+                  <a href="#" class="tooltip" title="Earthquake risk">
                   <div class="circle">
                     <div class="mask full">
                       <div class="fill"></div>
@@ -311,7 +311,7 @@ header ("Location: login.php");
                 </a>
                 </div>
                 <div class="radial" data-score="0" id="Subsidence">
-                  <a href="#" class="tooltip" title="Risk of Subsidence along the Coastal zone">
+                  <a href="#" class="tooltip" title="Subsidence risk">
                   <div class="circle">
                     <div class="mask full">
                       <div class="fill"></div>
