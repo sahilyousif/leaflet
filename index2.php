@@ -345,17 +345,17 @@ var basemaps = {
             }
 
 
-            Hurricanes = e.layer.feature.properties.Index_HurricaneRisk;
-            Floods = e.layer.feature.properties.Index_floodRisk;
-            Wildfire = e.layer.feature.properties.Index_FireRisk;
+            Hurricanes = Math.round(e.layer.feature.properties.Index_HurricaneRisk);
+            Floods = Math.round(e.layer.feature.properties.Index_floodRisk);
+            Wildfire = Math.round(e.layer.feature.properties.Index_FireRisk);
             // Traffic = e.layer.feature.properties.Index_trafficproxvol;
-            NPLSites = e.layer.feature.properties.Index_NPLsites;
-            RMPSites = e.layer.feature.properties.Index_RMPsites;
-            TSDFSites = e.layer.feature.properties.Index_TSDF;
-            Ozone = e.layer.feature.properties.Index_oz;
-            ParticulateMatter = e.layer.feature.properties.Index_PM25;
+            NPLSites = Math.round(e.layer.feature.properties.Index_NPLsites);
+            RMPSites = Math.round(e.layer.feature.properties.Index_RMPsites);
+            TSDFSites = Math.round(e.layer.feature.properties.Index_TSDF);
+            Ozone = Math.round(e.layer.feature.properties.Index_oz);
+            ParticulateMatter = Math.round(e.layer.feature.properties.Index_PM25);
             // Earthquake = e.layer.feature.properties.index_eqrisk;
-            Subsidence = e.layer.feature.properties.index_subs;
+            Subsidence = Math.round(e.layer.feature.properties.index_subs);
             OverallRisk = (Hurricanes + Floods + Wildfire + NPLSites + RMPSites + TSDFSites + Ozone + ParticulateMatter + Subsidence) / 9;
 
             risks = [{"label":"Hurricanes", "value":Hurricanes, "description":"Hurricane Risk"}, 
@@ -517,41 +517,6 @@ map.addLayer(drawnItems);
 function changeScore() {
 
 
-  // function update(id,data){
-    
-  //     $(id).data("score",data);
-  //     // console.log(id)
-
-  //     if( data <= 1) {
-  //       $(id).find(".inset").css("background-color","#8DC540");
-  //     }
-  //     else if( data <= 2) {
-  //       $(id).find(".inset").css("background-color","#FEF102");
-  //     }
-  //     else if( data <= 3) {
-  //       $(id).find(".inset").css("background-color","#F8931F");
-  //     }
-  //     else if( data <= 4) {
-  //       $(id).find(".inset").css("background-color","#EE5628");
-  //     }
-  //     else if( data <= 5) {
-  //       $(id).find(".inset").css("background-color","#ED1B24");
-  //     }
-  //     $(id).find(".bigger").html(data);
-  // }
-
-  // update("#Hurricanes",Hurricanes.toFixed(1));
-  // update("#Floods",Floods.toFixed(1));
-  // update("#Wildfire",Wildfire.toFixed(1));
-  // update("#Traffic",Traffic.toFixed(1));
-  // update("#NPLSites",NPLSites.toFixed(1));
-  // update("#RMPSites",RMPSites.toFixed(1));
-  // update("#TSDFSites",TSDFSites.toFixed(1));
-  // update("#Ozone",Ozone.toFixed(1));
-  // update("#ParticulateMatter",ParticulateMatter.toFixed(1));
-  // update("#Earthquake",Earthquake.toFixed(1));
-  // update("#Subsidence",Subsidence.toFixed(1));
-
   document.getElementById("OverallRisk").value = OverallRisk;
   
   drawRisks();
@@ -578,6 +543,7 @@ var width = 370,
   radius = Math.min(width, height) / (2.5),
   innerRadius = 0.3 * radius,
   color = d3.scale.category20c(),
+  mycolors = [ "#15A699", "#6FA83F", "#EBE142", "#F38C23", "#B61620"]
   overallRisk = 0;
 
   
@@ -627,7 +593,7 @@ var width = 370,
       .attr("class","slice");
 
   arcs.append("path")
-    .attr("fill", function(d, i) { return color(i); })
+    .attr("fill", function(d, i) { return mycolors[d.data.value-1]; })
     .attr("stroke", "gray")
     .attr("stroke-width", "0.5")
     .attr("d", arc)
