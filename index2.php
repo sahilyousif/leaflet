@@ -109,7 +109,7 @@ header ("Location: login2.php");
          
 
             <!-- _______________________DETAILED RISKS ________________________ -->
-            <div class="item-header">SPECIFIC HAZARD RISK ASSESSMENT&nbsp; <a href="risk_description.html" target="_blank"><img src="images/external_link.png" width="15px" /></a></div>
+            <div class="item-header">HAZARD RISK ASSESSMENT&nbsp; <a href="risk_description.html" target="_blank"><img src="images/external_link.png" width="15px" /></a></div>
             <div class="risk" id="risk_elements">
             </div>
 
@@ -117,7 +117,7 @@ header ("Location: login2.php");
             <div class="legend">
               <table width="100%">
                 <tr >
-                  <td width="16%"><div style="text-align:center;">Not known</div></td>
+                  <td width="16%"><div style="text-align:center;">No Risk</div></td>
                   <td width="16%"><div style="text-align:center;">Very Low</div></td>
                   <td width="16%"><div style="text-align:center;">Low</div></td>
                   <td width="16%"><div style="text-align:center;">Medium </div></td>
@@ -126,8 +126,8 @@ header ("Location: login2.php");
                 </tr>
                 <tr style="height:20px;">
                   <td style="border:1px solid #aaaaaa;"></td>
-                  <td bgcolor="#1BA6CF"></td>
                   <td bgcolor="#6FA83F"></td>
+                  <td bgcolor="#c1ef99"></td>
                   <td bgcolor="#EBE142"></td>
                   <td bgcolor="#F38C23"></td>
                   <td bgcolor="#B61620"></td>
@@ -573,7 +573,7 @@ var width = 370,
   radius = Math.min(width, height) / (2.5),
   innerRadius = 0.3 * radius,
   color = d3.scale.category20c(),
-  mycolors = [ "#1BA6CF", "#6FA83F", "#EBE142", "#F38C23", "#B61620"]
+  mycolors = [ "#6FA83F", "#c1ef99", "#EBE142", "#F38C23", "#B61620"]
   overallRisk = 0;
 
   
