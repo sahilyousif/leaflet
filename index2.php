@@ -94,7 +94,7 @@ header ("Location: login2.php");
 
       <div class="container">
         <div class="col-2">
-          <div class="item-header">OVERALL HAZARD RISK SCORE&nbsp; <a href="risk_description.html" target="_blank"><img src="images/external_link.png" width="15px" /></a></div>
+          <!-- <div class="item-header">OVERALL HAZARD RISK SCORE&nbsp; <a href="risk_description.html" target="_blank"><img src="images/external_link.png" width="15px" /></a></div> -->
           <div class="totalRisk">
 
             <!-- <div id="totalRiskValue">Average</div> -->
@@ -109,8 +109,35 @@ header ("Location: login2.php");
          
 
             <!-- _______________________DETAILED RISKS ________________________ -->
-            <div class="item-header">SPECIFIC HAZARD RISKS&nbsp; <a href="risk_description.html" target="_blank"><img src="images/external_link.png" width="15px" /></a></div>
+            <div class="item-header">SPECIFIC HAZARD RISK ASSESSMENT&nbsp; <a href="risk_description.html" target="_blank"><img src="images/external_link.png" width="15px" /></a></div>
             <div class="risk" id="risk_elements">
+            </div>
+
+            <div class="item-header">RISK SCORE LEGEND</div>
+            <div class="legend">
+              <table width="100%">
+                <tr >
+                  <td width="20%">Very Low</td>
+                  <td width="20%"></td>
+                  <td width="20%"><div style="text-align:center;">Medium</div></td>
+                  <td width="20%"></td>
+                  <td width="20%"><div style="text-align:right;">Very High</div></td>
+                </tr>
+                <tr style="height:20px;">
+                  <td bgcolor="#1BA6CF"></td>
+                  <td bgcolor="#6FA83F"></td>
+                  <td bgcolor="#EBE142"></td>
+                  <td bgcolor="#F38C23"></td>
+                  <td bgcolor="#B61620"></td>
+                </tr>
+                <tr>
+                  <td><div style="display:inline-block; width:50%;">0</div><div style="display:inline-block; width:50%; text-align:right;">1</div></td>
+                  <td><span style="float:right;">2</span></td>
+                  <td><span style="float:right;">3</span></td>
+                  <td><span style="float:right;">4</span></td>
+                  <td><span style="float:right;">5</span></td>
+                </tr>
+              </table>
             </div>
               
         </div>
@@ -543,7 +570,7 @@ var width = 370,
   radius = Math.min(width, height) / (2.5),
   innerRadius = 0.3 * radius,
   color = d3.scale.category20c(),
-  mycolors = [ "#15A699", "#6FA83F", "#EBE142", "#F38C23", "#B61620"]
+  mycolors = [ "#1BA6CF", "#6FA83F", "#EBE142", "#F38C23", "#B61620"]
   overallRisk = 0;
 
   
@@ -563,7 +590,7 @@ var width = 370,
     .style('padding',"5px")
     .offset([0, 0])
     .html(function(d) {
-      return d.data.label + ": <span style='color:orangered'>" + d.data.value + "</span>" + "<br><span>" + d.data.description + "</span>";
+      return "<span >" + d.data.description + "</span>" + "<br><span>Risk Score: " + d.data.value + "</span>";
     });
 
   var arc = d3.svg.arc()
@@ -662,29 +689,67 @@ if(OverallRisk === 0) {
 overallRiskLabel = "No Risk";
 }
 else if( OverallRisk > 0 && OverallRisk <= 1) {
-overallRiskLabel = "Very Low Risk";
+overallRiskLabel = "Very Low";
 }
 else if( OverallRisk > 1 && OverallRisk <= 2) {
-overallRiskLabel = "Low Risk";
+overallRiskLabel = "Low";
 }
 else if( OverallRisk > 2 && OverallRisk <= 3) {
-overallRiskLabel = "Medium Risk";
+overallRiskLabel = "Medium";
 }
 else if( OverallRisk > 3 && OverallRisk <= 4) {
-overallRiskLabel = "High Risk";
+overallRiskLabel = "High";
 }
 else if( OverallRisk > 4 && OverallRisk <= 5) {
-overallRiskLabel = "Very High Risk";
+overallRiskLabel = "Very High";
 }
 svg.append("text")
 .attr("class", "overallRisk")
 .attr("dy", ".35em")
-.attr("dx", "-3.25em")
+.attr("x", "0")
 .attr("text-align", "center")
 .attr("font-weight","bold")
-.attr("font-size","11px")
+.attr("font-size","14px")
+.attr("text-anchor", "middle")
 .text(overallRiskLabel);
+
+svg.append("path")
+  .attr("id", "wavy") //very important to give the path element a unique ID to reference later
+  .attr("d", "M -34,2 A 8,8 0 0,1 35,2") //Notation for an SVG path, from bl.ocks.org/mbostock/2565344
+  .style("fill", "none")
+  .style("stroke", "none");
+
+//Create an SVG text element and append a textPath element
+svg.append("text")
+   .append("textPath") //append a textPath to the text element
+  .attr("xlink:href", "#wavy") //place the ID of the path here
+  .style("text-anchor","middle") //place the text halfway on the arc
+  .attr("startOffset", "50%")   
+  .attr("text-align", "center")
+  // .attr("font-weight","bold")
+  .attr("font-size","11px")
+  .text("Overall Risk");
+
+// svg.append("path")
+//   .attr("id", "wavy2") //very important to give the path element a unique ID to reference later
+//   .attr("d", "M 30,0 A 8,8 0 0,1 -30,0") //Notation for an SVG path, from bl.ocks.org/mbostock/2565344
+//   .style("fill", "none")
+//   .style("stroke", "#aaaaaa");
+
+// //Create an SVG text element and append a textPath element
+// svg.append("text")
+//    .append("textPath") //append a textPath to the text element
+//   .attr("xlink:href", "#wavy2") //place the ID of the path here
+//   .style("text-anchor","middle") //place the text halfway on the arc
+//   .attr("startOffset", "50%")   
+//   .attr("text-align", "center")
+//   // .attr("font-weight","bold")
+//   .attr("font-size","12px")
+//   .text("Overall");
+
 }
+
+
 
 </script>
 <!--         <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script> -->

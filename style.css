@@ -134,6 +134,8 @@ input[type=search]:focus {
   border: 1px solid lightGrey;
    border-radius: 15px;
   background-color: #f0f0f0;
+
+  display: none;
 }
 .item-header {
   /*padding-top: 8px;*/
@@ -156,12 +158,18 @@ input[type=search]:focus {
 .risk {
   /*width: 80%;*/
   /*margin: 10px auto;*/
-  border: 1px solid lightGrey;
-  border-radius: 15px;
-  background-color: #f0f0f0;
+  /*border: 1px solid lightGrey;*/
+  /*border-radius: 15px;*/
+  /*background-color: #f0f0f0;*/
   /*padding-top: 10px;*/
   float: left;
   width: 100%;
+}
+.legend{
+  padding-bottom: 10px;
+}
+.legend > table {
+  font-size: 12px;
 }
 
 .radial {
