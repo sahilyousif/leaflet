@@ -117,13 +117,15 @@ header ("Location: login2.php");
             <div class="legend">
               <table width="100%">
                 <tr >
-                  <td width="20%">Very Low</td>
-                  <td width="20%"></td>
-                  <td width="20%"><div style="text-align:center;">Medium</div></td>
-                  <td width="20%"></td>
-                  <td width="20%"><div style="text-align:right;">Very High</div></td>
+                  <td width="16%"><div style="text-align:center;">Not known</div></td>
+                  <td width="16%"><div style="text-align:center;">Very Low</div></td>
+                  <td width="16%"><div style="text-align:center;">Low</div></td>
+                  <td width="16%"><div style="text-align:center;">Medium </div></td>
+                  <td width="16%"><div style="text-align:center;">High</div></td>
+                  <td width="16%"><div style="text-align:center;">Very High</div></td>
                 </tr>
                 <tr style="height:20px;">
+                  <td style="border:1px solid #aaaaaa;"></td>
                   <td bgcolor="#1BA6CF"></td>
                   <td bgcolor="#6FA83F"></td>
                   <td bgcolor="#EBE142"></td>
@@ -131,11 +133,12 @@ header ("Location: login2.php");
                   <td bgcolor="#B61620"></td>
                 </tr>
                 <tr>
-                  <td><div style="display:inline-block; width:50%;">0</div><div style="display:inline-block; width:50%; text-align:right;">1</div></td>
-                  <td><span style="float:right;">2</span></td>
-                  <td><span style="float:right;">3</span></td>
-                  <td><span style="float:right;">4</span></td>
-                  <td><span style="float:right;">5</span></td>
+                  <td style="text-align:center;">0</td>
+                  <td style="text-align:center;">1</td>
+                  <td style="text-align:center;">2</td>
+                  <td style="text-align:center;">3</td>
+                  <td style="text-align:center;">4</td>
+                  <td style="text-align:center;">5</td>
                 </tr>
               </table>
             </div>
@@ -728,7 +731,7 @@ svg.append("text")
   .attr("text-align", "center")
   // .attr("font-weight","bold")
   .attr("font-size","11px")
-  .text("Overall Risk");
+  .text("Overall Hazards Risk");
 
 // svg.append("path")
 //   .attr("id", "wavy2") //very important to give the path element a unique ID to reference later
