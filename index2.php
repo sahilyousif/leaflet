@@ -95,9 +95,9 @@ header ("Location: login2.php");
       <div class="container">
         <div class="col-2">
           <!-- <div class="item-header">OVERALL HAZARD RISK SCORE&nbsp; <a href="risk_description.html" target="_blank"><img src="images/external_link.png" width="15px" /></a></div> -->
-          <div class="totalRisk">
+          <div class="totalRisk" style="display:none;">
 
-            <!-- <div id="totalRiskValue">Average</div> -->
+         
             <div id="totalRiskGraph">
               <meter max= 5.0 min= 0.0 value=0.0 high=3.0 low=1.0 optimum=4.0 id="OverallRisk"></meter>
               <div style="float:left">Low</div>
@@ -391,8 +391,8 @@ var basemaps = {
             risks = [{"label":"Hurricanes", "value":Hurricanes, "description":"Hurricane Risk"}, 
             {"label":"Floods", "value":Floods, "description":"Flooding Risk"}, 
             {"label":"Wildfire", "value":Wildfire, "description":"Wildfire risk"},
-            {"label":"Nat. Priority", "value":NPLSites, "description":"Proximity to National Priorities List Sites"}, 
-            {"label":"Risk Mgmt. Fac.", "value":RMPSites, "description":"Proximity to Risk Management Plan Sites"}, 
+            {"label":"Contam. Lands", "value":NPLSites, "description":"Proximity to National Priorities List Sites"}, 
+            {"label":"Air Pollution", "value":RMPSites, "description":"Proximity to Risk Management Plan Sites"}, 
             {"label":"Haz. Waste", "value":TSDFSites, "description":"Proximity to Hazardous Waste Treatment Storage and Disposal Facilities"},
             {"label":"Ozone", "value":Ozone, "description":"Average Seasonal Ozone Conc. in 2011"}, 
             {"label":"Particulate Matter", "value":ParticulateMatter, "description":"Average Annual PM2.5 Conc. in 2011"}, 
@@ -568,8 +568,8 @@ function drawRisks() {
 
 
 
-var width = 370,
-  height = 390,
+var width = 390,
+  height = 410,
   radius = Math.min(width, height) / (2.5),
   innerRadius = 0.3 * radius,
   color = d3.scale.category20c(),

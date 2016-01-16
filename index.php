@@ -106,7 +106,7 @@ header ("Location: login.php");
          
 
             <!-- _______________________DETAILED RISKS ________________________ -->
-            <div class="item-header">SPECIFIC HAZARD RISKS&nbsp; <a href="risk_description.html" target="_blank"><img src="images/external_link.png" width="15px" /></a></div>
+            <div class="item-header">HAZARD RISK ASSESSMENT&nbsp; <a href="risk_description.html" target="_blank"><img src="images/external_link.png" width="15px" /></a></div>
             <div class="risk">
               <div class="col-1">
                 <div class="radial" data-score="2" id="Hurricanes">
@@ -203,7 +203,7 @@ header ("Location: login.php");
                     <span class='little'>/ 5</span>
                   </div>
                   <div class="tag">
-                    NPL Sites
+                    Contaminated Lands
                   </div>  
                   </a>
                 </div>
@@ -223,7 +223,7 @@ header ("Location: login.php");
                     <span class='little'>/ 5</span>
                   </div>
                   <div class="tag">
-                    RMP Sites
+                    Air Pollution
                   </div>  
                 </div>
                   </a>
@@ -246,7 +246,7 @@ header ("Location: login.php");
                     <span class='little'>/ 5</span>
                   </div>
                   <div class="tag">
-                    TSDF Sites
+                    Hazardous Waste
                   </div>  
                 </a>
                 </div>
@@ -732,21 +732,24 @@ function changeScore() {
     
       $(id).data("score",data);
       // console.log(id)
-
-      if( data <= 1) {
-        $(id).find(".inset").css("background-color","#8DC540");
+      if(data == 0.0)
+      {
+        $(id).find(".inset").css("background-color","#FFFFFF");
+      }
+      else if( data <= 1) {
+        $(id).find(".inset").css("background-color","#6FA83F");
       }
       else if( data <= 2) {
-        $(id).find(".inset").css("background-color","#FEF102");
+        $(id).find(".inset").css("background-color","#c1ef99");
       }
       else if( data <= 3) {
-        $(id).find(".inset").css("background-color","#F8931F");
+        $(id).find(".inset").css("background-color","#EBE142");
       }
       else if( data <= 4) {
-        $(id).find(".inset").css("background-color","#EE5628");
+        $(id).find(".inset").css("background-color","#F38C23");
       }
       else if( data <= 5) {
-        $(id).find(".inset").css("background-color","#ED1B24");
+        $(id).find(".inset").css("background-color","#B61620");
       }
       $(id).find(".bigger").html(data);
   }
