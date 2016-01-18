@@ -90,16 +90,47 @@ header ("Location: login.php");
       </div>
 
       <div class="container">
+        <br>
         <div class="col-2">
           <div class="item-header">OVERALL HAZARD RISK SCORE&nbsp; <a href="risk_description.html" target="_blank"><img src="images/external_link.png" width="15px" /></a></div>
           <div class="totalRisk">
 
             <!-- <div id="totalRiskValue">Average</div> -->
-            <div id="totalRiskGraph">
+<!--             <div id="totalRiskGraph">
               <meter max= 5.0 min= 0.0 value=0.0 high=3.0 low=1.0 optimum=4.0 id="OverallRisk"></meter>
               <div style="float:left">Low</div>
               <div style="float:right">High</div>
             </div>
+ -->
+            <div class="legend">
+              <table width="100%">
+                <tr >
+                  <td width="16%"><div style="text-align:center;">No Risk</div></td>
+                  <td width="16%"><div style="text-align:center;">Very Low</div></td>
+                  <td width="16%"><div style="text-align:center;">Low</div></td>
+                  <td width="16%"><div style="text-align:center;">Medium </div></td>
+                  <td width="16%"><div style="text-align:center;">High</div></td>
+                  <td width="16%"><div style="text-align:center;">Very High</div></td>
+                </tr>
+                <tr style="height:20px;">
+                  <td id="risklevel_0" style="border:1px solid #aaaaaa;"></td>
+                  <td id="risklevel_1" bgcolor="#6FA83F"></td>
+                  <td id="risklevel_2" bgcolor="#c1ef99"></td>
+                  <td id="risklevel_3" bgcolor="#EBE142"></td>
+                  <td id="risklevel_4" bgcolor="#F38C23"></td>
+                  <td id="risklevel_5" bgcolor="#B61620"></td>
+                </tr>
+                <tr>
+                  <td style="text-align:center;">0</td>
+                  <td style="text-align:center;">1</td>
+                  <td style="text-align:center;">2</td>
+                  <td style="text-align:center;">3</td>
+                  <td style="text-align:center;">4</td>
+                  <td style="text-align:center;">5</td>
+                </tr>
+              </table>
+            </div>
+
           </div>
         </div>
         <div class="col-2">
@@ -766,7 +797,8 @@ function changeScore() {
   update("#Earthquake",Earthquake.toFixed(1));
   update("#Subsidence",Subsidence.toFixed(1));
 
-  document.getElementById("OverallRisk").value = OverallRisk;
+  // document.getElementById("OverallRisk").value = OverallRisk;
+  drawOverallRisk(OverallRisk)
   
   drawRisks();
 }      
@@ -784,6 +816,23 @@ function drawRisks() {
       $(this).find('.circle .fill.fix').css(transform_styles[i], 'rotate(' + fix_rotation + 'deg)');
     }
   });
+}
+
+function drawOverallRisk(risk_value){
+  risk_value = Math.round(risk_value);
+  risk_colors = ["#ffffff" , "#6FA83F", "#c1ef99", "#EBE142", "#F38C23", "#B61620"];
+
+  
+  for(i = 0; i <= risk_value ; i++)
+  {
+    $("#risklevel_" + i).css('background-color',risk_colors[i]);
+  }
+
+  for(i = risk_value+1 ; i <= 6 ; i++)
+  {
+    $("#risklevel_" + i).css('background-color',"#ffffff"); 
+  }
+
 }
 
 </script>
