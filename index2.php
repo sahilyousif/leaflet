@@ -23,7 +23,7 @@ header ("Location: login2.php");
   <link rel="stylesheet" href="dist/leaflet.draw.css" />
   <link rel="stylesheet" href="dist/leaflet.groupedlayercontrol.min.css" />
   <link rel="stylesheet" href="src/L.Control.Sidebar.css" />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style2.css" />
 
   <script src="//cdn.jsdelivr.net/leaflet/0.7.3/leaflet.js"></script>
 

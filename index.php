@@ -114,11 +114,11 @@ header ("Location: login.php");
                 </tr>
                 <tr style="height:20px;">
                   <td id="risklevel_0" style="border:1px solid #aaaaaa;"></td>
-                  <td id="risklevel_1" bgcolor="#6FA83F"></td>
-                  <td id="risklevel_2" bgcolor="#c1ef99"></td>
-                  <td id="risklevel_3" bgcolor="#EBE142"></td>
-                  <td id="risklevel_4" bgcolor="#F38C23"></td>
-                  <td id="risklevel_5" bgcolor="#B61620"></td>
+                  <td id="risklevel_1" bgcolor="#6FA83F" style="border:1px solid #aaaaaa;"></td>
+                  <td id="risklevel_2" bgcolor="#c1ef99" style="border:1px solid #aaaaaa;"></td>
+                  <td id="risklevel_3" bgcolor="#EBE142" style="border:1px solid #aaaaaa;"></td>
+                  <td id="risklevel_4" bgcolor="#F38C23" style="border:1px solid #aaaaaa;"></td>
+                  <td id="risklevel_5" bgcolor="#B61620" style="border:1px solid #aaaaaa;"></td>
                 </tr>
                 <tr>
                   <td style="text-align:center;">0</td>
@@ -137,7 +137,7 @@ header ("Location: login.php");
          
 
             <!-- _______________________DETAILED RISKS ________________________ -->
-            <div class="item-header">HAZARD RISK ASSESSMENT&nbsp; <a href="risk_description.html" target="_blank"><img src="images/external_link.png" width="15px" /></a></div>
+            <div class="item-header">SPECIFIC HAZARD RISK ASSESSMENT&nbsp; <a href="risk_description.html" target="_blank"><img src="images/external_link.png" width="15px" /></a></div>
             <div class="risk">
               <div class="col-1">
                 <div class="radial" data-score="2" id="Hurricanes">
@@ -830,7 +830,7 @@ function drawOverallRisk(risk_value){
 
   for(i = risk_value+1 ; i <= 6 ; i++)
   {
-    $("#risklevel_" + i).css('background-color',"#ffffff"); 
+    $("#risklevel_" + i).css('background-color',"#f0f0f0"); 
   }
 
 }
