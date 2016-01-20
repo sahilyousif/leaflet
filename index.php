@@ -105,12 +105,12 @@ header ("Location: login.php");
             <div class="legend">
               <table width="100%">
                 <tr >
-                  <td width="16%"><div style="text-align:center;">No Risk</div></td>
-                  <td width="16%"><div style="text-align:center;">Very Low</div></td>
-                  <td width="16%"><div style="text-align:center;">Low</div></td>
-                  <td width="16%"><div style="text-align:center;">Medium </div></td>
-                  <td width="16%"><div style="text-align:center;">High</div></td>
-                  <td width="16%"><div style="text-align:center;">Very High</div></td>
+                  <td width="16%"><div style="text-align:center;"  id="risklevel_label_0">No Risk</div></td>
+                  <td width="16%"><div style="text-align:center;"  id="risklevel_label_1">Very Low</div></td>
+                  <td width="16%"><div style="text-align:center;"  id="risklevel_label_2">Low</div></td>
+                  <td width="16%"><div style="text-align:center;"  id="risklevel_label_3">Medium </div></td>
+                  <td width="16%"><div style="text-align:center;"  id="risklevel_label_4">High</div></td>
+                  <td width="16%"><div style="text-align:center;"  id="risklevel_label_5">Very High</div></td>
                 </tr>
                 <tr style="height:20px;">
                   <td id="risklevel_0" style="border:1px solid #aaaaaa;"></td>
@@ -121,12 +121,12 @@ header ("Location: login.php");
                   <td id="risklevel_5" bgcolor="#B61620" style="border:1px solid #aaaaaa;"></td>
                 </tr>
                 <tr>
-                  <td style="text-align:center;">0</td>
-                  <td style="text-align:center;">1</td>
-                  <td style="text-align:center;">2</td>
-                  <td style="text-align:center;">3</td>
-                  <td style="text-align:center;">4</td>
-                  <td style="text-align:center;">5</td>
+                  <td style="text-align:center;" id="risklevel_val_0">0</td>
+                  <td style="text-align:center;" id="risklevel_val_1">1</td>
+                  <td style="text-align:center;" id="risklevel_val_2">2</td>
+                  <td style="text-align:center;" id="risklevel_val_3">3</td>
+                  <td style="text-align:center;" id="risklevel_val_4">4</td>
+                  <td style="text-align:center;" id="risklevel_val_5">5</td>
                 </tr>
               </table>
             </div>
@@ -826,12 +826,26 @@ function drawOverallRisk(risk_value){
   for(i = 0; i <= risk_value ; i++)
   {
     $("#risklevel_" + i).css('background-color',risk_colors[i]);
+    $("#risklevel_val_" + i).css('font-weight',300);
+    $("#risklevel_label_" + i).css('font-weight',300);
+    $("#risklevel_val_" + i).css('font-size','11px');
+    $("#risklevel_label_" + i).css('font-size','11px');
+
   }
 
   for(i = risk_value+1 ; i <= 6 ; i++)
   {
     $("#risklevel_" + i).css('background-color',"#f0f0f0"); 
+    $("#risklevel_val_" + i).css('font-weight',300);
+    $("#risklevel_label_" + i).css('font-weight',300);
+    $("#risklevel_val_" + i).css('font-size','11px');
+    $("#risklevel_label_" + i).css('font-size','11px');
   }
+
+  $("#risklevel_val_" + risk_value).css('font-weight',600);
+  $("#risklevel_label_" + risk_value).css('font-weight',600);
+  $("#risklevel_val_" + risk_value).css('font-size','16px');
+  $("#risklevel_label_" + risk_value).css('font-size','12px');
 
 }
 
