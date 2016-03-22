@@ -437,7 +437,7 @@ var bedRooms, bathRooms, finishedSqFt, Zestimate, zillowId, homeDescription;
 var sidebar = L.control.sidebar('sidebar', {
   position: 'right'
 });
-// 
+
 map.addControl(sidebar);
 
 
@@ -454,7 +454,7 @@ map.on('load',function(e){
         // });
 var parcelLayer = L.esri.featureLayer({
             // url: 'https://newcoastalatlas.tamug.edu/coastal/rest/services/Tricountyatlas/Risk/MapServer/7',
-            url: 'http://newcoastalatlas.tamug.edu/coastal/rest/services/grover/Parcelswithrisk04/FeatureServer/0',
+            url: 'https://newcoastalatlas.tamug.edu/coastal/rest/services/grover/HG_BB_RISK_Mar22/MapServer/1',
             minZoom: 17,
             style: function(feature) {
 
