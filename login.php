@@ -35,7 +35,7 @@ if(isset($_POST['username'])) {
 
         <?php endif; ?> -->
         <div class="wrapper">
-            <div class="container">
+            <div class="mycontainer">
                 <h1>Buyers Beware</h1>
                 <form name="login" action="" method="post" class="form">
                     <input type="text" name="username" value="" placeholder="Username" /><br />
