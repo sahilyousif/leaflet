@@ -265,7 +265,7 @@ drawOverallRisk(OverallRisk)
           </div>
           <div class="inset">
             <span class='bigger'>3</span> 
-            <span class='little'>/ 5</span          </div>>
+            <span class='little'>/ 5</span>
 
           <div class="tag">
             Hurricanes
