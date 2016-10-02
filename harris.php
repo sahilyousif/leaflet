@@ -266,7 +266,7 @@ drawOverallRisk(OverallRisk)
           <div class="inset">
             <span class='bigger'>3</span> 
             <span class='little'>/ 5</span>
-
+          </div>
           <div class="tag">
             Hurricanes
           </div>  
@@ -533,7 +533,7 @@ var address;
 
 var geocoder = new google.maps.Geocoder;
 
-var map = L.map('map', {zoomControl: false, loadingControl: true}).setView([29.848854,-95.446157], 18);
+var map = L.map('map', {zoomControl: false, loadingControl: true}).setView([29.824370458887763,-95.41300892829895], 18);
 
 
 var ImageryLayer = L.esri.basemapLayer('Imagery')
@@ -665,7 +665,7 @@ var basemaps = {
             }
 
 
-            Hurricanes = e.layer.feature.properties.INDEX_HURR;
+             Hurricanes = e.layer.feature.properties.INDEX_HURR;
             Floods = e.layer.feature.properties.INDEX_FLOO;
             Wildfire = e.layer.feature.properties.INDEX_FIRE;
             NPLSites = e.layer.feature.properties.INDEX_NPLS;
