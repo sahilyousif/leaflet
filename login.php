@@ -2,19 +2,24 @@
 session_start();
 
 $userinfo = array(
-    'admin'=>'bbpass12',
-    'user1'=>'bbpass12'
+    'user01'=>'bbpass12'
     );
 
-if(isset($_GET['logout'])) {
-    $_SESSION['username'] = '';
-    header('Location:  ' . $_SERVER['PHP_SELF']);
+if(isset($_SESSION['redirect_url'])){
+echo $_SESSION['redirect_url'];
 }
 
 if(isset($_POST['username'])) {
     if($userinfo[$_POST['username']] == $_POST['password']) {
         $_SESSION['username'] = $_POST['username'];
-        header("Location: index.php");
+
+        if(isset($_SESSION['redirect_url'])){
+            header("Location: " . $_SESSION['redirect_url']);
+        }
+        else{
+            header("Location: galveston.php");
+        }
+        
         exit;
     }else {
         //Invalid Login
