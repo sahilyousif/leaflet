@@ -160,7 +160,7 @@ if (!(isset($_SESSION['username']))) {
               <option value="contaminatedlands">Contaminated Lands</option>
               <option value="earthquake" selected="true">Earthquake</option>
               <option value="airpollution" selected="true">Air Pollution</option>
-              <option value="subsidence">Subsidence</option>
+              <!-- <option value="subsidence">Subsidence</option> -->
             </select>
 
             <!-- Initialize the plugin: -->
@@ -230,11 +230,11 @@ if (!(isset($_SESSION['username']))) {
                         OverallRisk += RMPSites;
                         num += 1;
                       }
-                      if($(this).val() == "subsidence")
-                      {
-                        OverallRisk += Subsidence;
-                        num += 1;
-                      }
+                      // if($(this).val() == "subsidence")
+                      // {
+                      //   OverallRisk += Subsidence;
+                      //   num += 1;
+                      // }
                     }
                   });
 
@@ -450,7 +450,7 @@ drawOverallRisk(OverallRisk)
         </a>
       </div>
     </div>
-    <div class="col-md-5" id="subsidence" style='display:none'>
+  <!--   <div class="col-md-5" id="subsidence" style='display:none'>
       <div class="radial" data-score="0" id="Subsidence">
         <a href="#" class="mytooltip" title="Subsidence risk">
           <div class="circle">
@@ -471,7 +471,7 @@ drawOverallRisk(OverallRisk)
           </div>  
         </a>
       </div>
-    </div>
+    </div> -->
 
   </div>
 </div>
@@ -675,7 +675,7 @@ var basemaps = {
             Ozone = e.layer.feature.properties.INDEX_OZ;
             ParticulateMatter = e.layer.feature.properties.INDEX_PM25;
             Earthquake = e.layer.feature.properties.INDEX_EQRI;
-            Subsidence = e.layer.feature.properties.INDEX_RMPS;
+            // Subsidence = e.layer.feature.properties.INDEX_RMPS;
 
 
             OverallRisk = 0;
@@ -729,11 +729,11 @@ var basemaps = {
                   OverallRisk += RMPSites;
                   num += 1;
                 }
-                if($(this).val() == "subsidence")
-                {
-                  OverallRisk += Subsidence;
-                  num += 1;
-                }
+                // if($(this).val() == "subsidence")
+                // {
+                //   OverallRisk += Subsidence;
+                //   num += 1;
+                // }
               }
             })
 
@@ -912,7 +912,7 @@ function changeScore() {
     update("#Ozone",Ozone.toFixed(1));
     update("#ParticulateMatter",ParticulateMatter.toFixed(1));
     update("#Earthquake",Earthquake.toFixed(1));
-    update("#Subsidence",Subsidence.toFixed(1));
+    // update("#Subsidence",Subsidence.toFixed(1));
 
 
     drawOverallRisk(OverallRisk)
