@@ -565,7 +565,7 @@ map.on('load',function(e){
         // });
 var parcelLayer = L.esri.featureLayer({
             // url: 'https://newcoastalatlas.tamug.edu/coastal/rest/services/Tricountyatlas/Risk/MapServer/7',
-            url: 'http://newcoastalatlas.tamug.edu/coastal/rest/services/grover/Parcelswithrisk04/FeatureServer/0',
+            url: 'http://www.texascoastalatlas.com/arcgiswebadaptor/rest/services/BuyersBeware/Galveston_BB/MapServer/0',
             minZoom: 17,
             style: function(feature) {
 
@@ -583,19 +583,19 @@ var parcelLayer = L.esri.featureLayer({
 
 var earthquakeRisk = L.esri.featureLayer({
             // url: 'https://newcoastalatlas.tamug.edu/coastal/rest/services/Tricountyatlas/Risk/MapServer/7',
-            url: 'http://newcoastalatlas.tamug.edu/coastal/rest/services/grover/Parcelswithrisk04/FeatureServer/1',
+            url: 'http://www.texascoastalatlas.com/arcgiswebadaptor/rest/services/BuyersBeware/Galveston_BB/MapServer/1',
             // url: 'https://newcoastalatlas.tamug.edu/coastal/rest/services/grover/HG_BB_RISK_Mar22/MapServer/1',
           });
 
 
 var erosionRates = L.esri.featureLayer({
             // url: 'https://newcoastalatlas.tamug.edu/coastal/rest/services/Tricountyatlas/Risk/MapServer/7',
-            url: 'http://newcoastalatlas.tamug.edu/coastal/rest/services/grover/Parcelswithrisk04/FeatureServer/2',
+            url: 'http://www.texascoastalatlas.com/arcgiswebadaptor/rest/services/BuyersBeware/Galveston_BB/MapServer/2',
           });
 
 var subsidenceZones = L.esri.featureLayer({
             // url: 'https://newcoastalatlas.tamug.edu/coastal/rest/services/Tricountyatlas/Risk/MapServer/7',
-            url: 'http://newcoastalatlas.tamug.edu/coastal/rest/services/grover/Parcelswithrisk04/FeatureServer/3',
+            url: 'http://www.texascoastalatlas.com/arcgiswebadaptor/rest/services/BuyersBeware/Galveston_BB/MapServer/3',
           });
 
 var groupedOverlays = {
