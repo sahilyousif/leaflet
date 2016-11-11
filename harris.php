@@ -10,6 +10,14 @@ if (!(isset($_SESSION['username']))) {
 
 }
 
+if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 1800)) {
+  session_unset();
+  session_destroy();
+  $_SESSION['redirect_url'] = 'harris.php';
+  header ("Location: login.php");
+}
+$_SESSION['LAST_ACTIVITY'] = time();
+
 ?><html>
 
 <head>
