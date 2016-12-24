@@ -43,8 +43,8 @@ if(isset($_POST['username'])) {
             <div class="mycontainer">
                 <h1>Buyers Beware</h1>
                 <form name="login" action="" method="post" class="form">
-                    <input type="text" name="username" value="" placeholder="Username" /><br />
-                    <input type="password" name="password" value="" placeholder="password" /><br />
+                    <input type="text" name="username" value="" placeholder="Username" required/><br />
+                    <input type="password" name="password" value="" placeholder="password" required/><br />
                     <button type="submit" name="submit" value="Submit" >Login</button>
                 </form>
             </div>
