@@ -5,7 +5,7 @@ session_start();
 
 if (!(isset($_SESSION['username']))) {
 
-  $_SESSION['redirect_url'] = 'galveston.php';
+  $_SESSION['redirect_url'] = 'galveston-newviz.php';
   header ("Location: login.php");
 
 }
