@@ -204,93 +204,25 @@ $_SESSION['LAST_ACTIVITY'] = time();
             <script type="text/javascript">
             $(document).ready(function() {
 
-
+              OverallRisk = 0;
+              num = 0;
               $('.checkbox input').click(function(){
                 if (this.checked === false){
                   $("#" + this.value).hide()
+                  num -= 1;
                 }
                 else if (this.checked === true){
                   $("#" + this.value).show()
+                  num += 1;
                 }
+
+                OverallRisk = OverallRisk/num; 
+                drawOverallRisk(OverallRisk)
+
               })
 
 
-              $('#specific-risk-selector').multiselect({
-                onChange: function(element,checked){
-                  if(checked === true)
-                  {
-                    console.log(element[0].value)
-                    $("#" + element[0].value).show()
-                  }
-                  else if (checked === false)
-                  {
-                    console.log(element[0].value)
-                    $("#" + element[0].value).hide()
-                  }
-
-                  OverallRisk = 0;
-                  num = 0;
-                  $('#specific-risk-selector option').each(function(){
-
-                    if($(this).prop('selected'))
-                    {
-                      if($(this).val() == "hurricanes")
-                      {
-                        OverallRisk += Hurricanes;
-                        num += 1;
-                      }
-                      if($(this).val() == "hazardouswaste")
-                      {
-                        OverallRisk += TSDFSites;
-                        num += 1;
-                      }
-                      if($(this).val() == "floods")
-                      {
-                        OverallRisk += Floods;
-                        num += 1;
-                      }
-                      if($(this).val() == "ozone")
-                      {
-                        OverallRisk += Ozone;
-                        num += 1;
-                      }
-                      if($(this).val() == "wildfire")
-                      {
-                        OverallRisk += Wildfire;
-                        num += 1;
-                      }
-                      if($(this).val() == "particulatematter")
-                      {
-                        OverallRisk += ParticulateMatter;
-                        num += 1;
-                      }
-                      if($(this).val() == "contaminatedlands")
-                      {
-                        OverallRisk += NPLSites;
-                        num += 1;
-                      }
-                      if($(this).val() == "earthquake")
-                      {
-                        OverallRisk += Earthquake;
-                        num += 1;
-                      }
-                      if($(this).val() == "airpollution")
-                      {
-                        OverallRisk += RMPSites;
-                        num += 1;
-                      }
-                      if($(this).val() == "subsidence")
-                      {
-                        OverallRisk += Subsidence;
-                        num += 1;
-                      }
-                    }
-                  });
-
-OverallRisk = OverallRisk/num; 
-drawOverallRisk(OverallRisk)
-}
-});
+              
 });
 
 

@@ -587,7 +587,7 @@ var parcelLayer = L.esri.featureLayer({
           }).addTo(map);
 
 
-
+console.log("hey");
 
 var earthquakeRisk = L.esri.featureLayer({
             // url: 'https://newcoastalatlas.tamug.edu/coastal/rest/services/Tricountyatlas/Risk/MapServer/7',
