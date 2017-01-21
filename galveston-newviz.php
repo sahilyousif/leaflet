@@ -162,39 +162,39 @@ $_SESSION['LAST_ACTIVITY'] = time();
 
             
             <div class="mycol-1">
-            <div class="checkbox">
-              <label><input type="checkbox" value="hurricanes" checked>Hurricanes</label>
+              <div class="checkbox">
+                <label><input type="checkbox" value="hurricanes" checked>Hurricanes</label>
+              </div>
+              <div class="checkbox">
+                <label><input type="checkbox" value="hazardouswaste">Hazardous Waste</label>
+              </div>
+              <div class="checkbox ">
+                <label><input type="checkbox" value="floods" checked>Floods</label>
+              </div>
+              <div class="checkbox">
+                <label><input type="checkbox" value="ozone">Ozone</label>
+              </div>
+              <div class="checkbox">
+                <label><input type="checkbox" value="wildfire" checked>Wildfire</label>
+              </div>
             </div>
-            <div class="checkbox">
-              <label><input type="checkbox" value="hazardouswaste">Hazardous Waste</label>
+            <div class="mycol-1">
+              <div class="checkbox ">
+                <label><input type="checkbox" value="particulatematter" >Particulate Matter</label>
+              </div>
+              <div class="checkbox">
+                <label><input type="checkbox" value="contaminatedlands">Contaminated Lands</label>
+              </div>
+              <div class="checkbox">
+                <label><input type="checkbox" value="earthquake" checked>Earthquake</label>
+              </div>
+              <div class="checkbox ">
+                <label><input type="checkbox" value="airpollution" checked>Air Pollution</label>
+              </div>
+              <div class="checkbox ">
+                <label><input type="checkbox" value="subsidence">Subsidence</label>
+              </div>
             </div>
-            <div class="checkbox ">
-              <label><input type="checkbox" value="floods" checked>Floods</label>
-            </div>
-            <div class="checkbox">
-              <label><input type="checkbox" value="ozone">Ozone</label>
-            </div>
-            <div class="checkbox">
-              <label><input type="checkbox" value="wildfire" checked>Wildfire</label>
-            </div>
-          </div>
-          <div class="mycol-1">
-            <div class="checkbox ">
-              <label><input type="checkbox" value="particulatematter" >Particulate Matter</label>
-            </div>
-            <div class="checkbox">
-              <label><input type="checkbox" value="contaminatedlands">Contaminated Lands</label>
-            </div>
-            <div class="checkbox">
-              <label><input type="checkbox" value="earthquake" checked>Earthquake</label>
-            </div>
-            <div class="checkbox ">
-              <label><input type="checkbox" value="airpollution" checked>Air Pollution</label>
-            </div>
-            <div class="checkbox ">
-              <label><input type="checkbox" value="subsidence">Subsidence</label>
-            </div>
-          </div>
 
 
 
@@ -207,22 +207,83 @@ $_SESSION['LAST_ACTIVITY'] = time();
               OverallRisk = 0;
               num = 0;
               $('.checkbox input').click(function(){
+
                 if (this.checked === false){
                   $("#" + this.value).hide()
-                  num -= 1;
+                  
                 }
                 else if (this.checked === true){
                   $("#" + this.value).show()
-                  num += 1;
+                  
                 }
 
-                OverallRisk = OverallRisk/num; 
-                drawOverallRisk(OverallRisk)
+                OverallRisk = 0;
+                num = 0;
+                $('.checkbox input').each(function(){
+                  
+                  if(this.checked === true)
+                  {
+                    
+                    if($(this).val() == "hurricanes")
+                    {
+                      OverallRisk += Hurricanes;
+                      num += 1;
+                    }
+                    if($(this).val() == "hazardouswaste")
+                    {
+                      OverallRisk += TSDFSites;
+                      num += 1;
+                    }
+                    if($(this).val() == "floods")
+                    {
+                      OverallRisk += Floods;
+                      num += 1;
+                    }
+                    if($(this).val() == "ozone")
+                    {
+                      OverallRisk += Ozone;
+                      num += 1;
+                    }
+                    if($(this).val() == "wildfire")
+                    {
+                      OverallRisk += Wildfire;
+                      num += 1;
+                    }
+                    if($(this).val() == "particulatematter")
+                    {
+                      OverallRisk += ParticulateMatter;
+                      num += 1;
+                    }
+                    if($(this).val() == "contaminatedlands")
+                    {
+                      OverallRisk += NPLSites;
+                      num += 1;
+                    }
+                    if($(this).val() == "earthquake")
+                    {
+                      OverallRisk += Earthquake;
+                      num += 1;
+                    }
+                    if($(this).val() == "airpollution")
+                    {
+                      OverallRisk += RMPSites;
+                      num += 1;
+                    }
+                    if($(this).val() == "subsidence")
+                    {
+                      OverallRisk += Subsidence;
+                      num += 1;
+                    }
+                  }
+                })
 
-              })
+OverallRisk = OverallRisk/num; 
+drawOverallRisk(OverallRisk)
+
+})
 
 
-              
+
 });
 
 
@@ -661,10 +722,11 @@ var basemaps = {
 
             OverallRisk = 0;
             num = 0;
-            $('#specific-risk-selector option').each(function(){
-
-              if($(this).prop('selected'))
+            $('.checkbox input').each(function(){
+              
+              if(this.checked === true)
               {
+                
                 if($(this).val() == "hurricanes")
                 {
                   OverallRisk += Hurricanes;
